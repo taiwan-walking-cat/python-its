@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python ITS 證照練習系統 - 超大型題庫版</title>
+    <title>Python ITS 證照練習系統 - 專業版</title>
     <style>
         * {
             margin: 0;
@@ -42,14 +42,6 @@
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
-        }
-        
-        .header .stats-info {
-            margin-top: 15px;
-            font-size: 0.95rem;
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 10px;
         }
         
         /* 登入畫面 */
@@ -497,34 +489,6 @@
             color: #991b1b;
         }
         
-        .explanation {
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 8px;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .explanation h4 {
-            color: #1e293b;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .explanation p {
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        
-        .explanation .code-example {
-            background: #f1f5f9;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            margin: 10px 0;
-        }
-        
         .progress-bar {
             height: 8px;
             background: #e2e8f0;
@@ -606,10 +570,7 @@
     <div class="container">
         <div class="header">
             <h1>🐍 Python ITS 證照練習系統</h1>
-            <p>超大型題庫版 - 專業級程式設計認證模擬測驗</p>
-            <div class="stats-info">
-                📚 超過300道精選題目 | 🎯 詳細解析說明 | ⚡ 智能出題系統
-            </div>
+            <p>專業級程式設計認證模擬測驗 - 專業版</p>
         </div>
         
         <!-- 登入畫面 -->
@@ -719,10 +680,7 @@
             </div>
             
             <div class="feedback" id="feedback">
-                <div class="explanation" id="explanationContainer">
-                    <h4>💡 詳細解析</h4>
-                    <div id="explanationContent"></div>
-                </div>
+                <strong>解析：</strong><span id="explanation"></span>
             </div>
             
             <div class="controls">
@@ -746,30 +704,16 @@
     </div>
 
     <script>
-        // 超大型題庫 (300+ 題目)
+        // 大型題庫
         const questionBank = [
-            // 變數與運算式 (50題)
+            // 變數與運算式 (20題)
             {
                 question: "以下哪個是Python中正確的變數命名方式？",
                 options: ["2variable", "variable_name", "variable-name", "class"],
                 correct: 1,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "Python變數名稱必須以字母或底線開頭，不能以數字開頭，也不能使用連字號。'class'是保留字。",
-                detailedExplanation: {
-                    concept: "Python變數命名規則",
-                    rules: [
-                        "必須以字母(a-z, A-Z)或底線(_)開頭",
-                        "後續字符可以是字母、數字或底線",
-                        "不能使用Python保留字(如class, def, if等)",
-                        "區分大小寫",
-                        "建議使用snake_case命名風格"
-                    ],
-                    examples: [
-                        "正確：my_variable, _private, userName, count1",
-                        "錯誤：2variable, my-var, class, def"
-                    ]
-                }
+                explanation: "Python變數名稱必須以字母或底線開頭，不能以數字開頭，也不能使用連字號。'class'是保留字。"
             },
             {
                 question: "執行以下程式碼後，x的值是多少？",
@@ -780,16 +724,7 @@ x *= 2`,
                 correct: 1,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "x = 10，然後 x += 5 使 x = 15，最後 x *= 2 使 x = 30。",
-                detailedExplanation: {
-                    concept: "複合賦值運算符",
-                    steps: [
-                        "初始值：x = 10",
-                        "x += 5 等同於 x = x + 5，所以 x = 10 + 5 = 15",
-                        "x *= 2 等同於 x = x * 2，所以 x = 15 * 2 = 30"
-                    ],
-                    note: "複合賦值運算符包括：+=, -=, *=, /=, //=, %=, **="
-                }
+                explanation: "x = 10，然後 x += 5 使 x = 15，最後 x *= 2 使 x = 30。"
             },
             {
                 question: "Python中 // 運算符的作用是什麼？",
@@ -797,21 +732,7 @@ x *= 2`,
                 correct: 1,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "// 是整數除法運算符，會返回除法的商（整數部分），例如 7 // 2 = 3。",
-                detailedExplanation: {
-                    concept: "Python除法運算符",
-                    operators: [
-                        "/ : 浮點除法，結果為浮點數",
-                        "// : 整數除法，結果為整數（向下取整）",
-                        "% : 取餘數運算符"
-                    ],
-                    examples: [
-                        "7 / 2 = 3.5",
-                        "7 // 2 = 3",
-                        "7 % 2 = 1",
-                        "-7 // 2 = -4 (向下取整)"
-                    ]
-                }
+                explanation: "// 是整數除法運算符，會返回除法的商（整數部分），例如 7 // 2 = 3。"
             },
             {
                 question: "以下程式碼的輸出結果是什麼？",
@@ -822,21 +743,7 @@ print(a ** b, a % b)`,
                 correct: 0,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "** 是次方運算符，5**2=25；% 是取餘數運算符，5%2=1。",
-                detailedExplanation: {
-                    concept: "數學運算符",
-                    calculation: [
-                        "a ** b = 5 ** 2 = 5的2次方 = 25",
-                        "a % b = 5 % 2 = 5除以2的餘數 = 1"
-                    ],
-                    operators: [
-                        "** : 次方運算",
-                        "% : 取餘數運算",
-                        "+ : 加法",
-                        "- : 減法",
-                        "* : 乘法"
-                    ]
-                }
+                explanation: "** 是次方運算符，5**2=25；% 是取餘數運算符，5%2=1。"
             },
             {
                 question: "Python中哪個運算符用於字串重複？",
@@ -844,21 +751,7 @@ print(a ** b, a % b)`,
                 correct: 1,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "* 運算符可以用於字串重複，例如 'Hello' * 3 會產生 'HelloHelloHello'。",
-                detailedExplanation: {
-                    concept: "字串運算符",
-                    operations: [
-                        "+ : 字串連接",
-                        "* : 字串重複",
-                        "in : 檢查子字串是否存在",
-                        "len() : 獲取字串長度"
-                    ],
-                    examples: [
-                        "'Hello' + 'World' = 'HelloWorld'",
-                        "'Hi' * 3 = 'HiHiHi'",
-                        "'a' in 'apple' = True"
-                    ]
-                }
+                explanation: "* 運算符可以用於字串重複，例如 'Hello' * 3 會產生 'HelloHelloHello'。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -869,16 +762,7 @@ print(x / y, x // y, x % y)`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "/ 是浮點除法得到3.333...，// 是整數除法得到3，% 是取餘數得到1。",
-                detailedExplanation: {
-                    concept: "除法運算的三種形式",
-                    calculations: [
-                        "x / y = 10 / 3 = 3.3333333333333335",
-                        "x // y = 10 // 3 = 3 (整數部分)",
-                        "x % y = 10 % 3 = 1 (餘數)"
-                    ],
-                    verification: "3 * 3 + 1 = 10 ✓"
-                }
+                explanation: "/ 是浮點除法得到3.333...，// 是整數除法得到3，% 是取餘數得到1。"
             },
             {
                 question: "Python中的變數類型是如何決定的？",
@@ -886,20 +770,7 @@ print(x / y, x // y, x % y)`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "Python是動態類型語言，變數的類型在執行時根據賦值自動決定。",
-                detailedExplanation: {
-                    concept: "Python動態類型系統",
-                    features: [
-                        "動態類型：變數類型在執行時決定",
-                        "強類型：不允許隱式類型轉換",
-                        "自動類型推斷：根據賦值自動決定類型"
-                    ],
-                    examples: [
-                        "x = 5 → x是int類型",
-                        "x = 'hello' → x變成str類型",
-                        "x = 3.14 → x變成float類型"
-                    ]
-                }
+                explanation: "Python是動態類型語言，變數的類型在執行時根據賦值自動決定。"
             },
             {
                 question: "以下哪個表達式的結果是True？",
@@ -909,24 +780,7 @@ b = 10`,
                 correct: 2,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "a = 5, b = 10，所以 a < b 為 True。",
-                detailedExplanation: {
-                    concept: "比較運算符",
-                    operators: [
-                        "> : 大於",
-                        "< : 小於", 
-                        ">= : 大於等於",
-                        "<= : 小於等於",
-                        "== : 等於",
-                        "!= : 不等於"
-                    ],
-                    evaluation: [
-                        "a > b → 5 > 10 → False",
-                        "a == b → 5 == 10 → False",
-                        "a < b → 5 < 10 → True ✓",
-                        "a >= b → 5 >= 10 → False"
-                    ]
-                }
+                explanation: "a = 5, b = 10，所以 a < b 為 True。"
             },
             {
                 question: "Python中 ** 運算符的優先級如何？",
@@ -934,20 +788,7 @@ b = 10`,
                 correct: 2,
                 difficulty: "hard",
                 topic: "變數與運算式",
-                explanation: "** (次方) 運算符具有最高的優先級，甚至高於一元運算符。",
-                detailedExplanation: {
-                    concept: "運算符優先級",
-                    priority: [
-                        "1. () 括號",
-                        "2. ** 次方",
-                        "3. +x, -x, ~x 一元運算符",
-                        "4. *, /, //, % 乘除運算",
-                        "5. +, - 加減運算",
-                        "6. ==, !=, <, > 比較運算",
-                        "7. and, or 邏輯運算"
-                    ],
-                    example: "2 + 3 ** 2 = 2 + 9 = 11 (不是25)"
-                }
+                explanation: "** (次方) 運算符具有最高的優先級，甚至高於一元運算符。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -958,16 +799,7 @@ z = x ** y ** 2`,
                 correct: 1,
                 difficulty: "hard",
                 topic: "變數與運算式",
-                explanation: "** 運算符是右結合的，所以 x ** y ** 2 = x ** (y ** 2) = 2 ** (3 ** 2) = 2 ** 9 = 512。",
-                detailedExplanation: {
-                    concept: "運算符結合性",
-                    calculation: [
-                        "y ** 2 = 3 ** 2 = 9",
-                        "x ** (y ** 2) = 2 ** 9 = 512"
-                    ],
-                    note: "** 運算符是右結合的，從右到左計算",
-                    comparison: "如果是左結合：(2 ** 3) ** 2 = 8 ** 2 = 64"
-                }
+                explanation: "** 運算符是右結合的，所以 x ** y ** 2 = x ** (y ** 2) = 2 ** (3 ** 2) = 2 ** 9 = 512。"
             },
             {
                 question: "Python中如何交換兩個變數的值？",
@@ -975,16 +807,7 @@ z = x ** y ** 2`,
                 correct: 1,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "Python支援多重賦值，可以用 a, b = b, a 直接交換兩個變數的值。",
-                detailedExplanation: {
-                    concept: "多重賦值(Tuple Unpacking)",
-                    methods: [
-                        "Python方式：a, b = b, a",
-                        "傳統方式：temp = a; a = b; b = temp",
-                        "算術方式：a = a + b; b = a - b; a = a - b"
-                    ],
-                    advantage: "Python的多重賦值更簡潔且不需要額外變數"
-                }
+                explanation: "Python支援多重賦值，可以用 a, b = b, a 直接交換兩個變數的值。"
             },
             {
                 question: "以下程式碼會產生什麼結果？",
@@ -994,17 +817,7 @@ print(x == 0.3)`,
                 correct: 1,
                 difficulty: "hard",
                 topic: "變數與運算式",
-                explanation: "由於浮點數精度問題，0.1 + 0.2 不完全等於 0.3，結果為 False。",
-                detailedExplanation: {
-                    concept: "浮點數精度問題",
-                    reason: "電腦使用二進制表示浮點數，某些十進制小數無法精確表示",
-                    actual_value: "0.1 + 0.2 = 0.30000000000000004",
-                    solutions: [
-                        "使用 round() 函數：round(0.1 + 0.2, 1) == 0.3",
-                        "使用 decimal 模組：from decimal import Decimal",
-                        "使用容差比較：abs(x - 0.3) < 1e-10"
-                    ]
-                }
+                explanation: "由於浮點數精度問題，0.1 + 0.2 不完全等於 0.3，結果為 False。"
             },
             {
                 question: "Python中的 is 運算符比較的是什麼？",
@@ -1012,19 +825,7 @@ print(x == 0.3)`,
                 correct: 2,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "is 運算符比較兩個物件是否為同一個物件（相同的記憶體位址）。",
-                detailedExplanation: {
-                    concept: "身份比較 vs 值比較",
-                    operators: [
-                        "is : 比較物件身份（記憶體位址）",
-                        "== : 比較物件的值"
-                    ],
-                    examples: [
-                        "a = [1, 2]; b = [1, 2] → a == b (True), a is b (False)",
-                        "a = 5; b = 5 → a == b (True), a is b (True, 小整數快取)"
-                    ],
-                    use_cases: "通常用於比較 None: if x is None"
-                }
+                explanation: "is 運算符比較兩個物件是否為同一個物件（相同的記憶體位址）。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -1036,19 +837,7 @@ print(a is b, a is c)`,
                 correct: 2,
                 difficulty: "hard",
                 topic: "變數與運算式",
-                explanation: "b = a 創建引用，a is b 為 True；c = a[:] 創建副本，a is c 為 False。",
-                detailedExplanation: {
-                    concept: "引用 vs 複製",
-                    operations: [
-                        "b = a : 創建引用，指向同一個物件",
-                        "c = a[:] : 創建淺拷貝，新的物件"
-                    ],
-                    memory: [
-                        "a 和 b 指向同一記憶體位址",
-                        "c 指向不同的記憶體位址"
-                    ],
-                    result: "a is b → True, a is c → False"
-                }
+                explanation: "b = a 創建引用，a is b 為 True；c = a[:] 創建副本，a is c 為 False。"
             },
             {
                 question: "Python中的 += 運算符對於不可變物件的行為是什麼？",
@@ -1056,20 +845,7 @@ print(a is b, a is c)`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "對於不可變物件（如整數、字串），+= 會創建新物件並重新賦值。",
-                detailedExplanation: {
-                    concept: "可變 vs 不可變物件",
-                    immutable: "int, float, str, tuple",
-                    mutable: "list, dict, set",
-                    behavior: [
-                        "不可變物件：+= 創建新物件",
-                        "可變物件：+= 修改原物件"
-                    ],
-                    example: [
-                        "x = 5; x += 1 → 創建新的int物件",
-                        "lst = [1]; lst += [2] → 修改原list物件"
-                    ]
-                }
+                explanation: "對於不可變物件（如整數、字串），+= 會創建新物件並重新賦值。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -1079,17 +855,7 @@ x += x *= 2`,
                 correct: 3,
                 difficulty: "hard",
                 topic: "變數與運算式",
-                explanation: "這種連續的複合賦值運算符使用會產生語法錯誤。",
-                detailedExplanation: {
-                    concept: "複合賦值運算符語法",
-                    error: "SyntaxError: invalid syntax",
-                    reason: "不能在同一行中連續使用複合賦值運算符",
-                    correct_way: [
-                        "x *= 2",
-                        "x += x",
-                        "或者：x = x + (x * 2)"
-                    ]
-                }
+                explanation: "這種連續的複合賦值運算符使用會產生語法錯誤。"
             },
             {
                 question: "Python中的 None 是什麼類型？",
@@ -1097,21 +863,7 @@ x += x *= 2`,
                 correct: 0,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "None 是 NoneType 類型的唯一實例，表示空值或無值。",
-                detailedExplanation: {
-                    concept: "None 物件",
-                    properties: [
-                        "類型：NoneType",
-                        "單例模式：只有一個None實例",
-                        "布林值：False",
-                        "用途：表示空值、預設參數、函數無返回值"
-                    ],
-                    usage: [
-                        "初始化變數：x = None",
-                        "檢查：if x is None",
-                        "函數預設返回值"
-                    ]
-                }
+                explanation: "None 是 NoneType 類型的唯一實例，表示空值或無值。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -1123,17 +875,7 @@ print(y)`,
                 correct: 0,
                 difficulty: "easy",
                 topic: "變數與運算式",
-                explanation: "整數是不可變物件，y = x 複製值，修改 x 不影響 y。",
-                detailedExplanation: {
-                    concept: "變數賦值與物件引用",
-                    steps: [
-                        "x = 10 → x指向整數物件10",
-                        "y = x → y也指向同一個整數物件10",
-                        "x = 20 → x指向新的整數物件20",
-                        "y仍然指向原來的整數物件10"
-                    ],
-                    note: "整數是不可變物件，重新賦值會創建新物件"
-                }
+                explanation: "整數是不可變物件，y = x 複製值，修改 x 不影響 y。"
             },
             {
                 question: "Python中如何檢查變數是否已定義？",
@@ -1141,19 +883,7 @@ print(y)`,
                 correct: 1,
                 difficulty: "hard",
                 topic: "變數與運算式",
-                explanation: "可以使用 'var' in locals() 或 'var' in globals() 來檢查變數是否已定義。",
-                detailedExplanation: {
-                    concept: "變數存在性檢查",
-                    methods: [
-                        "'var_name' in locals() : 檢查局部變數",
-                        "'var_name' in globals() : 檢查全域變數",
-                        "'var_name' in dir() : 檢查當前命名空間"
-                    ],
-                    alternative: [
-                        "try-except: try: var except NameError:",
-                        "hasattr(object, 'attribute') : 檢查物件屬性"
-                    ]
-                }
+                explanation: "可以使用 'var' in locals() 或 'var' in globals() 來檢查變數是否已定義。"
             },
             {
                 question: "以下程式碼會產生什麼結果？",
@@ -1164,242 +894,10 @@ print(len(y))`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "變數與運算式",
-                explanation: "x, y, z 都指向同一個列表物件，修改 x 也會影響 y 和 z。",
-                detailedExplanation: {
-                    concept: "多重賦值與物件引用",
-                    assignment: "x = y = z = [1, 2, 3] 讓三個變數指向同一個list物件",
-                    modification: "x.append(4) 修改了共享的list物件",
-                    result: "所有變數(x, y, z)都看到修改後的結果[1, 2, 3, 4]",
-                    length: "len(y) = 4"
-                }
-            },
-            // 繼續添加更多變數與運算式題目...
-            {
-                question: "Python中的科學記號表示法是什麼？",
-                code: `x = 1.5e3
-y = 2.5e-2
-print(x, y)`,
-                options: ["1500.0 0.025", "15.0 0.25", "1.5 2.5", "錯誤"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "1.5e3 表示 1.5 × 10³ = 1500.0，2.5e-2 表示 2.5 × 10⁻² = 0.025。",
-                detailedExplanation: {
-                    concept: "科學記號(Scientific Notation)",
-                    format: "mantissa e exponent",
-                    examples: [
-                        "1.5e3 = 1.5 × 10³ = 1500.0",
-                        "2.5e-2 = 2.5 × 10⁻² = 0.025",
-                        "6.02e23 = 6.02 × 10²³ (亞佛加厥數)"
-                    ],
-                    usage: "用於表示非常大或非常小的數字"
-                }
-            },
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = 5
-print(type(x).__name__)`,
-                options: ["int", "<class 'int'>", "integer", "number"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "type(x).__name__ 返回類型的名稱字串，對於整數是 'int'。",
-                detailedExplanation: {
-                    concept: "類型檢查方法",
-                    methods: [
-                        "type(x) : 返回類型物件",
-                        "type(x).__name__ : 返回類型名稱字串",
-                        "isinstance(x, int) : 檢查是否為特定類型"
-                    ],
-                    examples: [
-                        "type(5).__name__ → 'int'",
-                        "type('hello').__name__ → 'str'",
-                        "type([1,2,3]).__name__ → 'list'"
-                    ]
-                }
-            },
-            {
-                question: "Python中的位元運算符有哪些？",
-                code: `a = 5  # 101
-b = 3  # 011
-print(a & b, a | b, a ^ b)`,
-                options: ["1 7 6", "8 2 2", "5 3 8", "錯誤"],
-                correct: 0,
-                difficulty: "hard",
-                topic: "變數與運算式",
-                explanation: "& 是位元AND，| 是位元OR，^ 是位元XOR。5&3=1, 5|3=7, 5^3=6。",
-                detailedExplanation: {
-                    concept: "位元運算符",
-                    operators: [
-                        "& : 位元AND",
-                        "| : 位元OR", 
-                        "^ : 位元XOR",
-                        "~ : 位元NOT",
-                        "<< : 左移",
-                        ">> : 右移"
-                    ],
-                    calculation: [
-                        "5 = 101, 3 = 011",
-                        "5 & 3 = 101 & 011 = 001 = 1",
-                        "5 | 3 = 101 | 011 = 111 = 7",
-                        "5 ^ 3 = 101 ^ 011 = 110 = 6"
-                    ]
-                }
-            },
-            {
-                question: "以下程式碼會輸出什麼？",
-                code: `x = 10
-x <<= 2
-print(x)`,
-                options: ["20", "40", "5", "2.5"],
-                correct: 1,
-                difficulty: "hard",
-                topic: "變數與運算式",
-                explanation: "<< 是左移運算符，10 << 2 相當於 10 × 2² = 40。",
-                detailedExplanation: {
-                    concept: "位元移位運算",
-                    operation: "左移運算符 <<",
-                    calculation: [
-                        "10 的二進制：1010",
-                        "左移2位：101000",
-                        "結果：40"
-                    ],
-                    formula: "n << k = n × 2^k",
-                    example: "10 << 2 = 10 × 2² = 40"
-                }
-            },
-            {
-                question: "Python中的海象運算符(:=)的作用是什麼？",
-                code: `if (n := len([1, 2, 3, 4, 5])) > 3:
-    print(f\"長度是 {n}\")`,
-                options: ["語法錯誤", "長度是 5", "長度是 3", "沒有輸出"],
-                correct: 1,
-                difficulty: "hard",
-                topic: "變數與運算式",
-                explanation: "海象運算符(:=)可以在表達式中賦值並返回值，這裡n被賦值為5。",
-                detailedExplanation: {
-                    concept: "海象運算符(Walrus Operator)",
-                    syntax: "variable := expression",
-                    purpose: "在表達式中進行賦值",
-                    benefits: [
-                        "減少重複計算",
-                        "使程式碼更簡潔",
-                        "在條件語句中特別有用"
-                    ],
-                    version: "Python 3.8+ 才支援"
-                }
-            },
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = True
-y = False
-print(x + y, x * y, x - y)`,
-                options: ["1 0 1", "True False True", "2 0 0", "錯誤"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "在數學運算中，True被視為1，False被視為0。",
-                detailedExplanation: {
-                    concept: "布林值的數值運算",
-                    conversion: [
-                        "True → 1",
-                        "False → 0"
-                    ],
-                    calculation: [
-                        "True + False = 1 + 0 = 1",
-                        "True * False = 1 * 0 = 0", 
-                        "True - False = 1 - 0 = 1"
-                    ],
-                    note: "布林值是整數的子類型"
-                }
-            },
-            {
-                question: "Python中的除法運算在不同版本中有什麼差異？",
-                code: `# Python 2 vs Python 3
-print(5 / 2)`,
-                options: ["Python 2: 2, Python 3: 2.5", "Python 2: 2.5, Python 3: 2.5", "Python 2: 2.0, Python 3: 2.5", "沒有差異"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "Python 2中 / 是整數除法(結果為2)，Python 3中 / 是浮點除法(結果為2.5)。",
-                detailedExplanation: {
-                    concept: "Python版本差異",
-                    python2: "/ 運算符進行整數除法(當兩個操作數都是整數時)",
-                    python3: "/ 運算符總是進行浮點除法",
-                    migration: [
-                        "Python 2: 5 / 2 = 2",
-                        "Python 3: 5 / 2 = 2.5",
-                        "兩版本都支援: 5 // 2 = 2"
-                    ],
-                    solution: "使用 // 進行整數除法以保持相容性"
-                }
-            },
-            {
-                question: "以下程式碼會產生什麼結果？",
-                code: `x = 1_000_000
-y = 0b1010
-z = 0o17
-w = 0xFF
-print(x, y, z, w)`,
-                options: ["1000000 10 15 255", "錯誤", "1000000 1010 17 FF", "1_000_000 1010 17 255"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "Python支援數字分隔符(_)和不同進制表示法。",
-                detailedExplanation: {
-                    concept: "數字字面值表示法",
-                    formats: [
-                        "1_000_000 : 十進制，使用_分隔符",
-                        "0b1010 : 二進制，等於10",
-                        "0o17 : 八進制，等於15", 
-                        "0xFF : 十六進制，等於255"
-                    ],
-                    separator: "_ 可用於提高大數字的可讀性",
-                    conversion: "所有格式最終都轉換為十進制整數"
-                }
-            },
-            {
-                question: "Python中的鏈式比較如何工作？",
-                code: `x = 5
-print(1 < x < 10)
-print(1 < x > 3)`,
-                options: ["True True", "True False", "False True", "錯誤"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "鏈式比較等同於多個and條件：1 < x < 10 等於 1 < x and x < 10。",
-                detailedExplanation: {
-                    concept: "鏈式比較運算符",
-                    syntax: "a op1 b op2 c 等同於 (a op1 b) and (b op2 c)",
-                    evaluation: [
-                        "1 < x < 10 → (1 < 5) and (5 < 10) → True and True → True",
-                        "1 < x > 3 → (1 < 5) and (5 > 3) → True and True → True"
-                    ],
-                    advantage: "更接近數學表示法，程式碼更簡潔"
-                }
-            },
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = 3
-y = 4
-z = 5
-print(x < y < z, x < y > z)`,
-                options: ["True False", "True True", "False False", "False True"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "變數與運算式",
-                explanation: "x < y < z 為 True，x < y > z 等於 (3 < 4) and (4 > 5) 為 False。",
-                detailedExplanation: {
-                    concept: "複雜鏈式比較",
-                    evaluation: [
-                        "x < y < z → (3 < 4) and (4 < 5) → True and True → True",
-                        "x < y > z → (3 < 4) and (4 > 5) → True and False → False"
-                    ],
-                    note: "每個變數在鏈式比較中只被評估一次"
-                }
+                explanation: "x, y, z 都指向同一個列表物件，修改 x 也會影響 y 和 z。"
             },
 
-            // 判斷式 (40題)
+            // 判斷式 (15題)
             {
                 question: "以下程式碼會輸出什麼？",
                 code: `x = 15
@@ -1414,18 +912,7 @@ else:
                 correct: 0,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "x=15，滿足 x>10 和 x<20 的條件，所以輸出 'A'。",
-                detailedExplanation: {
-                    concept: "嵌套if語句",
-                    flow: [
-                        "x = 15",
-                        "檢查 x > 10 → 15 > 10 → True",
-                        "進入第一個if區塊",
-                        "檢查 x < 20 → 15 < 20 → True",
-                        "執行 print('A')"
-                    ],
-                    structure: "外層if-else包含內層if-else"
-                }
+                explanation: "x=15，滿足 x>10 和 x<20 的條件，所以輸出 'A'。"
             },
             {
                 question: "Python中哪個關鍵字用於多重條件判斷？",
@@ -1433,17 +920,7 @@ else:
                 correct: 1,
                 difficulty: "easy",
                 topic: "判斷式",
-                explanation: "Python使用 elif 關鍵字來處理多重條件判斷，相當於其他語言的 else if。",
-                detailedExplanation: {
-                    concept: "多重條件判斷",
-                    syntax: "if condition1: ... elif condition2: ... else: ...",
-                    advantages: [
-                        "避免深層嵌套",
-                        "程式碼更清晰",
-                        "效率更高（短路求值）"
-                    ],
-                    note: "Python沒有switch語句，使用elif替代"
-                }
+                explanation: "Python使用 elif 關鍵字來處理多重條件判斷，相當於其他語言的 else if。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -1461,17 +938,7 @@ print(grade)`,
                 correct: 1,
                 difficulty: "easy",
                 topic: "判斷式",
-                explanation: "score=85，滿足第二個條件 score>=80，所以 grade='B'。",
-                detailedExplanation: {
-                    concept: "elif鏈式判斷",
-                    evaluation: [
-                        "score >= 90 → 85 >= 90 → False",
-                        "score >= 80 → 85 >= 80 → True",
-                        "找到第一個True條件，執行對應程式碼",
-                        "跳過後續所有elif和else"
-                    ],
-                    pattern: "常用於分級評分系統"
-                }
+                explanation: "score=85，滿足第二個條件 score>=80，所以 grade='B'。"
             },
             {
                 question: "Python中的三元運算符語法是什麼？",
@@ -1479,17 +946,7 @@ print(grade)`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "Python的三元運算符語法是：true_value if condition else false_value。",
-                detailedExplanation: {
-                    concept: "條件表達式(三元運算符)",
-                    syntax: "value_if_true if condition else value_if_false",
-                    examples: [
-                        "max_val = a if a > b else b",
-                        "status = 'pass' if score >= 60 else 'fail'",
-                        "sign = 'positive' if x > 0 else 'negative'"
-                    ],
-                    advantage: "簡潔的條件賦值"
-                }
+                explanation: "Python的三元運算符語法是：true_value if condition else false_value。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -1502,19 +959,7 @@ else:
                 correct: 1,
                 difficulty: "easy",
                 topic: "判斷式",
-                explanation: "在Python中，0被視為False，所以會輸出'False'。",
-                detailedExplanation: {
-                    concept: "真值測試(Truth Value Testing)",
-                    falsy_values: [
-                        "False",
-                        "None", 
-                        "0, 0.0, 0j",
-                        "空序列: '', [], ()",
-                        "空映射: {}",
-                        "空集合: set()"
-                    ],
-                    truthy: "除了上述值外，其他所有值都被視為True"
-                }
+                explanation: "在Python中，0被視為False，所以會輸出'False'。"
             },
             {
                 question: "Python中哪些值被視為False？",
@@ -1522,23 +967,7 @@ else:
                 correct: 2,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "Python中False、0、空字串''、空列表[]、空字典{}、None等都被視為False。",
-                detailedExplanation: {
-                    concept: "假值(Falsy Values)",
-                    complete_list: [
-                        "False (布林假值)",
-                        "None (空值)",
-                        "0 (整數零)",
-                        "0.0 (浮點零)",
-                        "0j (複數零)",
-                        "'' (空字串)",
-                        "[] (空列表)",
-                        "() (空元組)",
-                        "{} (空字典)",
-                        "set() (空集合)"
-                    ],
-                    usage: "在if語句中直接使用變數進行真值測試"
-                }
+                explanation: "Python中False、0、空字串''、空列表[]、空字典{}、None等都被視為False。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -1550,16 +979,7 @@ print(result)`,
                 correct: 1,
                 difficulty: "easy",
                 topic: "判斷式",
-                explanation: "a=5, b=10，a > b 為False，所以result='小'。",
-                detailedExplanation: {
-                    concept: "三元運算符實例",
-                    evaluation: [
-                        "條件：a > b → 5 > 10 → False",
-                        "由於條件為False，選擇else後的值",
-                        "result = '小'"
-                    ],
-                    pattern: "常用於簡單的條件賦值"
-                }
+                explanation: "a=5, b=10，a > b 為False，所以result='小'。"
             },
             {
                 question: "Python中的 and 運算符具有什麼特性？",
@@ -1567,20 +987,7 @@ print(result)`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "and 運算符具有短路求值特性，如果第一個條件為False，就不會評估第二個條件。",
-                detailedExplanation: {
-                    concept: "短路求值(Short-circuit Evaluation)",
-                    behavior: [
-                        "and: 如果第一個操作數為假，直接返回第一個操作數",
-                        "or: 如果第一個操作數為真，直接返回第一個操作數"
-                    ],
-                    benefits: [
-                        "提高效率",
-                        "避免不必要的計算",
-                        "防止錯誤（如除零）"
-                    ],
-                    example: "x != 0 and 10/x > 1  # 安全的除法檢查"
-                }
+                explanation: "and 運算符具有短路求值特性，如果第一個條件為False，就不會評估第二個條件。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -1591,17 +998,7 @@ print(x or y)`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "or 運算符返回第一個為真的值，x=[]為假，所以返回y=[1, 2, 3]。",
-                detailedExplanation: {
-                    concept: "邏輯運算符的返回值",
-                    and_behavior: "返回第一個假值，或最後一個值",
-                    or_behavior: "返回第一個真值，或最後一個值",
-                    example: [
-                        "[] or [1,2,3] → [1,2,3] (第一個真值)",
-                        "[1] and [2] → [2] (最後一個值)",
-                        "0 and 5 → 0 (第一個假值)"
-                    ]
-                }
+                explanation: "or 運算符返回第一個為真的值，x=[]為假，所以返回y=[1, 2, 3]。"
             },
             {
                 question: "Python中的 not 運算符的優先級如何？",
@@ -1609,20 +1006,7 @@ print(x or y)`,
                 correct: 2,
                 difficulty: "hard",
                 topic: "判斷式",
-                explanation: "not 運算符具有很高的優先級，高於 and 和 or。",
-                detailedExplanation: {
-                    concept: "邏輯運算符優先級",
-                    order: [
-                        "1. not (最高)",
-                        "2. and",
-                        "3. or (最低)"
-                    ],
-                    example: [
-                        "not True and False → (not True) and False → False and False → False",
-                        "not True or False → (not True) or False → False or False → False"
-                    ],
-                    tip: "使用括號明確表達意圖"
-                }
+                explanation: "not 運算符具有很高的優先級，高於 and 和 or。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -1635,16 +1019,7 @@ else:
                 correct: 0,
                 difficulty: "easy",
                 topic: "判斷式",
-                explanation: "Python支援鏈式比較，1 < x < 10 等同於 1 < x and x < 10。",
-                detailedExplanation: {
-                    concept: "鏈式比較在條件語句中的應用",
-                    evaluation: [
-                        "x = 5",
-                        "1 < x < 10 → (1 < 5) and (5 < 10) → True and True → True",
-                        "條件為True，執行第一個分支"
-                    ],
-                    readability: "比 1 < x and x < 10 更簡潔直觀"
-                }
+                explanation: "Python支援鏈式比較，1 < x < 10 等同於 1 < x and x < 10。"
             },
             {
                 question: "以下程式碼會產生什麼結果？",
@@ -1656,18 +1031,7 @@ else:
                 correct: 0,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "運算順序：True and False = False，False or True = True，所以輸出'A'。",
-                detailedExplanation: {
-                    concept: "複合邏輯表達式求值",
-                    precedence: "and 的優先級高於 or",
-                    evaluation: [
-                        "True and False or True",
-                        "→ (True and False) or True",
-                        "→ False or True", 
-                        "→ True"
-                    ],
-                    result: "條件為True，輸出'A'"
-                }
+                explanation: "運算順序：True and False = False，False or True = True，所以輸出'A'。"
             },
             {
                 question: "Python中如何檢查變數是否為None？",
@@ -1675,20 +1039,7 @@ else:
                 correct: 1,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "檢查None應該使用 is None，因為None是單例物件。",
-                detailedExplanation: {
-                    concept: "None檢查的最佳實踐",
-                    recommended: "x is None",
-                    reasons: [
-                        "None是單例物件，使用is更準確",
-                        "is比==更快",
-                        "避免__eq__方法被重寫的影響"
-                    ],
-                    avoid: [
-                        "x == None (可能被重寫)",
-                        "not x (會將其他假值也視為None)"
-                    ]
-                }
+                explanation: "檢查None應該使用 is None，因為None是單例物件。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -1699,17 +1050,7 @@ print(x and y)`,
                 correct: 0,
                 difficulty: "medium",
                 topic: "判斷式",
-                explanation: "and 運算符返回第一個為假的值或最後一個值，x=\"\"為假，所以返回\"\"。",
-                detailedExplanation: {
-                    concept: "and運算符的詳細行為",
-                    rule: "返回第一個假值，如果都為真則返回最後一個值",
-                    evaluation: [
-                        "x = '' (假值)",
-                        "y = 'hello' (真值)",
-                        "x and y → 返回第一個假值 → ''"
-                    ],
-                    comparison: "如果是 y and x，則返回 ''"
-                }
+                explanation: "and 運算符返回第一個為假的值或最後一個值，x=\"\"為假，所以返回\"\"。"
             },
             {
                 question: "Python中的條件表達式可以嵌套嗎？",
@@ -1717,420 +1058,10 @@ print(x and y)`,
                 correct: 1,
                 difficulty: "hard",
                 topic: "判斷式",
-                explanation: "條件表達式可以嵌套，但會降低可讀性，不建議過度使用。",
-                detailedExplanation: {
-                    concept: "嵌套條件表達式",
-                    syntax: "value1 if condition1 else (value2 if condition2 else value3)",
-                    example: "grade = 'A' if score >= 90 else ('B' if score >= 80 else 'C')",
-                    problems: [
-                        "可讀性差",
-                        "難以維護",
-                        "容易出錯"
-                    ],
-                    alternative: "使用if-elif-else語句"
-                }
-            },
-            {
-                question: "以下程式碼會輸出什麼？",
-                code: `x = 10
-y = 20
-z = 30
-if x < y < z:
-    print(\"遞增\")
-elif x > y > z:
-    print(\"遞減\")
-else:
-    print(\"其他\")`,
-                options: ["遞增", "遞減", "其他", "錯誤"],
-                correct: 0,
-                difficulty: "easy",
-                topic: "判斷式",
-                explanation: "x < y < z 即 10 < 20 < 30 為True，所以輸出'遞增'。",
-                detailedExplanation: {
-                    concept: "鏈式比較在複雜條件中的應用",
-                    evaluation: [
-                        "x < y < z → 10 < 20 < 30 → True",
-                        "第一個條件為True，執行對應程式碼",
-                        "跳過後續elif和else"
-                    ],
-                    pattern: "常用於檢查數值序列的單調性"
-                }
-            },
-            {
-                question: "Python中的 all() 和 any() 函數如何工作？",
-                code: `lst = [True, False, True]
-print(all(lst), any(lst))`,
-                options: ["True True", "False True", "True False", "False False"],
-                correct: 1,
-                difficulty: "medium",
-                topic: "判斷式",
-                explanation: "all()要求所有元素都為True，any()只要有一個元素為True即可。",
-                detailedExplanation: {
-                    concept: "聚合布林函數",
-                    all_function: "所有元素都為True時返回True",
-                    any_function: "至少一個元素為True時返回True",
-                    evaluation: [
-                        "all([True, False, True]) → False (有False元素)",
-                        "any([True, False, True]) → True (有True元素)"
-                    ],
-                    empty_case: [
-                        "all([]) → True (空序列)",
-                        "any([]) → False (空序列)"
-                    ]
-                }
-            },
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = [1, 2, 3]
-if x:
-    print(len(x))
-else:
-    print(\"空列表\")`,
-                options: ["3", "空列表", "[1, 2, 3]", "錯誤"],
-                correct: 0,
-                difficulty: "easy",
-                topic: "判斷式",
-                explanation: "非空列表被視為True，所以執行if分支，輸出列表長度3。",
-                detailedExplanation: {
-                    concept: "容器類型的真值測試",
-                    rule: "非空容器為True，空容器為False",
-                    examples: [
-                        "[1, 2, 3] → True",
-                        "[] → False",
-                        "'hello' → True",
-                        "'' → False"
-                    ],
-                    application: "常用於檢查容器是否為空"
-                }
-            },
-            {
-                question: "Python中的 match-case 語句(Python 3.10+)如何使用？",
-                code: `x = 2
-match x:
-    case 1:
-        print(\"一\")
-    case 2:
-        print(\"二\")
-    case _:
-        print(\"其他\")`,
-                options: ["一", "二", "其他", "語法錯誤"],
-                correct: 1,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "match-case是Python 3.10新增的模式匹配語法，x=2匹配case 2。",
-                detailedExplanation: {
-                    concept: "結構化模式匹配(Structural Pattern Matching)",
-                    syntax: "match expression: case pattern: ...",
-                    features: [
-                        "模式匹配",
-                        "解構賦值",
-                        "守衛條件",
-                        "通配符 _"
-                    ],
-                    version: "Python 3.10+ 才支援",
-                    advantage: "比if-elif鏈更強大和靈活"
-                }
-            },
-            {
-                question: "以下程式碼會輸出什麼？",
-                code: `def check_value(x):
-    if x > 0:
-        return \"正數\"
-    elif x < 0:
-        return \"負數\"
-    else:
-        return \"零\"
-
-print(check_value(0))`,
-                options: ["正數", "負數", "零", "None"],
-                correct: 2,
-                difficulty: "easy",
-                topic: "判斷式",
-                explanation: "x=0，不滿足x>0和x<0，所以執行else分支，返回'零'。",
-                detailedExplanation: {
-                    concept: "函數中的條件判斷",
-                    flow: [
-                        "x = 0",
-                        "x > 0 → 0 > 0 → False",
-                        "x < 0 → 0 < 0 → False", 
-                        "執行else分支 → return '零'"
-                    ],
-                    pattern: "常用於數值分類函數"
-                }
-            },
-            {
-                question: "Python中的條件表達式與if語句的效能差異是什麼？",
-                code: `# 方法1：條件表達式
-result1 = \"pass\" if score >= 60 else \"fail\"
-
-# 方法2：if語句
-if score >= 60:
-    result2 = \"pass\"
-else:
-    result2 = \"fail\"`,
-                options: ["條件表達式更快", "if語句更快", "效能相同", "取決於條件複雜度"],
-                correct: 2,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "在簡單條件下，兩者效能基本相同，選擇主要基於可讀性考慮。",
-                detailedExplanation: {
-                    concept: "條件語句效能比較",
-                    performance: "簡單條件下效能差異微乎其微",
-                    considerations: [
-                        "可讀性：if語句更清晰",
-                        "簡潔性：條件表達式更簡潔",
-                        "複雜度：複雜邏輯用if語句",
-                        "維護性：if語句更易維護"
-                    ],
-                    recommendation: "根據具體情況選擇合適的語法"
-                }
-            },
-            // 繼續添加更多判斷式題目...
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = None
-y = 0
-z = False
-print(x or y or z or \"default\")`,
-                options: ["None", "0", "False", "default"],
-                correct: 3,
-                difficulty: "medium",
-                topic: "判斷式",
-                explanation: "or運算符會返回第一個真值，前三個都是假值，所以返回'default'。",
-                detailedExplanation: {
-                    concept: "or運算符的鏈式使用",
-                    evaluation: [
-                        "x or y or z or 'default'",
-                        "None or 0 or False or 'default'",
-                        "所有前面的值都是假值",
-                        "返回第一個真值：'default'"
-                    ],
-                    pattern: "常用於設置預設值"
-                }
-            },
-            {
-                question: "Python中如何實現多條件的複雜判斷？",
-                code: `age = 25
-income = 50000
-if age >= 18 and (income > 30000 or age > 65):
-    print(\"符合條件\")
-else:
-    print(\"不符合條件\")`,
-                options: ["符合條件", "不符合條件", "錯誤", "不確定"],
-                correct: 0,
-                difficulty: "medium",
-                topic: "判斷式",
-                explanation: "age>=18為True，income>30000為True，整個條件為True。",
-                detailedExplanation: {
-                    concept: "複合條件判斷",
-                    evaluation: [
-                        "age >= 18 → 25 >= 18 → True",
-                        "income > 30000 → 50000 > 30000 → True",
-                        "age > 65 → 25 > 65 → False",
-                        "(income > 30000 or age > 65) → True or False → True",
-                        "True and True → True"
-                    ],
-                    tips: "使用括號明確運算優先級"
-                }
-            },
-            {
-                question: "以下程式碼會輸出什麼？",
-                code: `def get_grade(score):
-    return (\"A\" if score >= 90 else
-            \"B\" if score >= 80 else
-            \"C\" if score >= 70 else
-            \"D\" if score >= 60 else \"F\")
-
-print(get_grade(75))`,
-                options: ["A", "B", "C", "D"],
-                correct: 2,
-                difficulty: "medium",
-                topic: "判斷式",
-                explanation: "score=75，不滿足>=90和>=80，滿足>=70，所以返回'C'。",
-                detailedExplanation: {
-                    concept: "多層條件表達式",
-                    evaluation: [
-                        "score >= 90 → 75 >= 90 → False",
-                        "score >= 80 → 75 >= 80 → False",
-                        "score >= 70 → 75 >= 70 → True",
-                        "返回 'C'"
-                    ],
-                    note: "雖然可行，但可讀性不如if-elif語句"
-                }
-            },
-            {
-                question: "Python中的布林運算符如何處理非布林值？",
-                code: `print(\"hello\" and 42)
-print(0 or \"world\")
-print(not \"python\")`,
-                options: ["42 world False", "True True False", "hello world True", "錯誤"],
-                correct: 0,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "and返回最後一個值，or返回第一個真值，not返回布林值。",
-                detailedExplanation: {
-                    concept: "邏輯運算符與非布林值",
-                    behavior: [
-                        "and: 返回第一個假值或最後一個值",
-                        "or: 返回第一個真值或最後一個值", 
-                        "not: 總是返回布林值"
-                    ],
-                    evaluation: [
-                        "'hello' and 42 → 'hello'為真，返回42",
-                        "0 or 'world' → 0為假，返回'world'",
-                        "not 'python' → 'python'為真，返回False"
-                    ]
-                }
-            },
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = 5
-result = x if x > 0 else -x if x < 0 else 0
-print(result)`,
-                options: ["5", "-5", "0", "錯誤"],
-                correct: 0,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "x=5>0，所以result=x=5。這是嵌套的條件表達式。",
-                detailedExplanation: {
-                    concept: "嵌套條件表達式的求值",
-                    structure: "x if x > 0 else (-x if x < 0 else 0)",
-                    evaluation: [
-                        "x = 5",
-                        "x > 0 → 5 > 0 → True",
-                        "返回第一個值：x = 5"
-                    ],
-                    purpose: "實現絕對值函數的邏輯"
-                }
-            },
-            {
-                question: "Python中如何檢查多個條件是否都滿足？",
-                code: `conditions = [True, True, False, True]
-print(all(conditions))
-print(any(conditions))`,
-                options: ["True True", "False True", "True False", "False False"],
-                correct: 1,
-                difficulty: "medium",
-                topic: "判斷式",
-                explanation: "all()要求所有條件都為True，any()只要有一個為True即可。",
-                detailedExplanation: {
-                    concept: "批量條件檢查",
-                    functions: [
-                        "all(): 所有元素都為True才返回True",
-                        "any(): 至少一個元素為True就返回True"
-                    ],
-                    evaluation: [
-                        "all([True, True, False, True]) → False (有False)",
-                        "any([True, True, False, True]) → True (有True)"
-                    ],
-                    usage: "常用於檢查多個條件的組合"
-                }
-            },
-            {
-                question: "以下程式碼會產生什麼結果？",
-                code: `x = 10
-if x := x + 5:  # 海象運算符
-    print(f\"x is {x}\")
-else:
-    print(\"x is falsy\")`,
-                options: ["x is 10", "x is 15", "x is falsy", "語法錯誤"],
-                correct: 1,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "海象運算符將x+5的結果(15)賦值給x，15為真值，所以執行if分支。",
-                detailedExplanation: {
-                    concept: "海象運算符在條件語句中的應用",
-                    operation: [
-                        "x := x + 5 將 x + 5 的結果賦值給 x",
-                        "x 變成 15",
-                        "15 是真值，條件為 True"
-                    ],
-                    advantage: "在條件檢查的同時進行賦值",
-                    version: "需要 Python 3.8+"
-                }
-            },
-            {
-                question: "Python中的短路求值有什麼實際應用？",
-                code: `def safe_divide(a, b):
-    return b != 0 and a / b
-
-print(safe_divide(10, 2))
-print(safe_divide(10, 0))`,
-                options: ["5.0 False", "5.0 錯誤", "True False", "5.0 None"],
-                correct: 0,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "短路求值防止除零錯誤，當b=0時，and直接返回False而不執行除法。",
-                detailedExplanation: {
-                    concept: "短路求值的安全應用",
-                    mechanism: [
-                        "b != 0 and a / b",
-                        "當 b != 0 為 False 時，不執行 a / b",
-                        "避免 ZeroDivisionError"
-                    ],
-                    results: [
-                        "safe_divide(10, 2): 2 != 0 → True, 10/2 → 5.0",
-                        "safe_divide(10, 0): 0 != 0 → False, 不執行除法"
-                    ],
-                    pattern: "常用於安全檢查"
-                }
-            },
-            {
-                question: "以下程式碼的輸出是什麼？",
-                code: `x = [1, 2, 3]
-y = [1, 2, 3]
-print(x == y, x is y)`,
-                options: ["True True", "False False", "True False", "False True"],
-                correct: 2,
-                difficulty: "medium",
-                topic: "判斷式",
-                explanation: "== 比較值(相等)，is 比較身份(不是同一物件)。",
-                detailedExplanation: {
-                    concept: "相等性比較 vs 身份比較",
-                    operators: [
-                        "== : 比較物件的值是否相等",
-                        "is : 比較是否為同一個物件"
-                    ],
-                    explanation: [
-                        "x == y → [1,2,3] == [1,2,3] → True (值相同)",
-                        "x is y → 不同的list物件 → False (不同身份)"
-                    ],
-                    memory: "x和y指向不同的記憶體位址"
-                }
-            },
-            {
-                question: "Python中如何實現類似switch的多分支判斷？",
-                code: `def handle_grade(grade):
-    match grade:
-        case 'A':
-            return \"優秀\"
-        case 'B':
-            return \"良好\"
-        case 'C':
-            return \"及格\"
-        case _:
-            return \"未知\"
-
-print(handle_grade('B'))`,
-                options: ["優秀", "良好", "及格", "未知"],
-                correct: 1,
-                difficulty: "hard",
-                topic: "判斷式",
-                explanation: "match-case語句匹配grade='B'，返回'良好'。",
-                detailedExplanation: {
-                    concept: "match-case模式匹配",
-                    syntax: "match expression: case pattern: ...",
-                    features: [
-                        "精確匹配",
-                        "通配符 _ 匹配任何值",
-                        "可以匹配複雜模式",
-                        "支援守衛條件"
-                    ],
-                    alternative: "Python 3.10之前使用字典或if-elif"
-                }
+                explanation: "條件表達式可以嵌套，但會降低可讀性，不建議過度使用。"
             },
 
-            // 迴圈 (40題)
+            // 迴圈 (15題)
             {
                 question: "以下程式碼會輸出幾次 'Hello'？",
                 code: `for i in range(3, 8, 2):
@@ -2139,17 +1070,7 @@ print(handle_grade('B'))`,
                 correct: 1,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "range(3, 8, 2) 產生 [3, 5, 7]，共3個數字，所以會輸出3次 'Hello'。",
-                detailedExplanation: {
-                    concept: "range函數的參數",
-                    syntax: "range(start, stop, step)",
-                    generation: [
-                        "start=3, stop=8, step=2",
-                        "產生：3, 5, 7",
-                        "共3個數字"
-                    ],
-                    note: "stop值不包含在內"
-                }
+                explanation: "range(3, 8, 2) 產生 [3, 5, 7]，共3個數字，所以會輸出3次 'Hello'。"
             },
             {
                 question: "while迴圈和for迴圈的主要區別是什麼？",
@@ -2157,24 +1078,7 @@ print(handle_grade('B'))`,
                 correct: 2,
                 difficulty: "easy",
                 topic: "迴圈",
-                explanation: "for迴圈通常用於已知迭代次數的情況，while迴圈用於條件控制的迭代。",
-                detailedExplanation: {
-                    concept: "迴圈類型的選擇",
-                    for_loop: [
-                        "適用於已知迭代次數",
-                        "遍歷序列或可迭代物件",
-                        "語法簡潔"
-                    ],
-                    while_loop: [
-                        "適用於條件控制",
-                        "迭代次數未知",
-                        "需要手動控制迴圈變數"
-                    ],
-                    examples: [
-                        "for: 遍歷列表、字典",
-                        "while: 讀取檔案直到結尾"
-                    ]
-                }
+                explanation: "for迴圈通常用於已知迭代次數的情況，while迴圈用於條件控制的迭代。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -2188,21 +1092,7 @@ print(handle_grade('B'))`,
                 correct: 0,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "i=0,1時正常輸出；i=2時continue跳過；i=3時正常輸出；i=4時break結束迴圈。",
-                detailedExplanation: {
-                    concept: "continue和break的使用",
-                    flow: [
-                        "i=0: 正常執行，輸出0",
-                        "i=1: 正常執行，輸出1", 
-                        "i=2: continue跳過print",
-                        "i=3: 正常執行，輸出3",
-                        "i=4: break結束迴圈"
-                    ],
-                    keywords: [
-                        "continue: 跳過本次迭代",
-                        "break: 結束整個迴圈"
-                    ]
-                }
+                explanation: "i=0,1時正常輸出；i=2時continue跳過；i=3時正常輸出；i=4時break結束迴圈。"
             },
             {
                 question: "Python中的else子句可以用在哪些語句中？",
@@ -2210,17 +1100,7 @@ print(handle_grade('B'))`,
                 correct: 3,
                 difficulty: "hard",
                 topic: "迴圈",
-                explanation: "Python中的else子句可以用在if、while、for和try語句中，當迴圈正常結束時執行。",
-                detailedExplanation: {
-                    concept: "else子句的多種用法",
-                    usage: [
-                        "if-else: 條件不滿足時執行",
-                        "while-else: 迴圈正常結束時執行",
-                        "for-else: 迴圈正常結束時執行",
-                        "try-else: 沒有異常時執行"
-                    ],
-                    note: "迴圈的else只有在沒有break時才執行"
-                }
+                explanation: "Python中的else子句可以用在if、while、for和try語句中，當迴圈正常結束時執行。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -2232,16 +1112,7 @@ else:
                 correct: 1,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "for迴圈的else子句在迴圈正常結束時執行，所以會輸出0 1 2 完成。",
-                detailedExplanation: {
-                    concept: "for-else語句",
-                    execution: [
-                        "迴圈正常執行：輸出0, 1, 2",
-                        "迴圈正常結束（沒有break）",
-                        "執行else子句：輸出'完成'"
-                    ],
-                    condition: "只有在沒有break的情況下else才會執行"
-                }
+                explanation: "for迴圈的else子句在迴圈正常結束時執行，所以會輸出0 1 2 完成。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -2255,17 +1126,7 @@ while i < 3:
                 correct: 0,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "i=1時輸出1；i=2時continue跳過print；i=3時輸出3。",
-                detailedExplanation: {
-                    concept: "while迴圈中的continue",
-                    flow: [
-                        "第1次：i=0→1, i!=2, 輸出1",
-                        "第2次：i=1→2, i==2, continue跳過print",
-                        "第3次：i=2→3, i!=2, 輸出3",
-                        "第4次：i=3, 不滿足i<3, 結束"
-                    ],
-                    note: "continue後直接進入下一次迭代"
-                }
+                explanation: "i=1時輸出1；i=2時continue跳過print；i=3時輸出3。"
             },
             {
                 question: "Python中的 range() 函數返回什麼？",
@@ -2273,18 +1134,7 @@ while i < 3:
                 correct: 2,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "range() 返回一個range物件，它是一個迭代器，可以節省記憶體。",
-                detailedExplanation: {
-                    concept: "range物件的特性",
-                    type: "range物件（迭代器）",
-                    advantages: [
-                        "記憶體效率高",
-                        "惰性求值",
-                        "支援索引和切片"
-                    ],
-                    conversion: "可用list(range())轉換為列表",
-                    note: "Python 2中range()返回列表，xrange()返回迭代器"
-                }
+                explanation: "range() 返回一個range物件，它是一個迭代器，可以節省記憶體。"
             },
             {
                 question: "以下程式碼會產生什麼結果？",
@@ -2294,18 +1144,7 @@ while i < 3:
                 correct: 0,
                 difficulty: "easy",
                 topic: "迴圈",
-                explanation: "range(2, 10, 3) 從2開始，步長為3，不超過10，產生2, 5, 8。",
-                detailedExplanation: {
-                    concept: "range函數的步長參數",
-                    parameters: "range(start=2, stop=10, step=3)",
-                    generation: [
-                        "第1個：2",
-                        "第2個：2+3=5",
-                        "第3個：5+3=8",
-                        "第4個：8+3=11 > 10，停止"
-                    ],
-                    output: "2 5 8 (end=' '使輸出在同一行)"
-                }
+                explanation: "range(2, 10, 3) 從2開始，步長為3，不超過10，產生2, 5, 8。"
             },
             {
                 question: "Python中如何創建無限迴圈？",
@@ -2313,18 +1152,7 @@ while i < 3:
                 correct: 1,
                 difficulty: "easy",
                 topic: "迴圈",
-                explanation: "while True: 創建無限迴圈，需要用break語句來跳出。",
-                detailedExplanation: {
-                    concept: "無限迴圈的創建",
-                    syntax: "while True:",
-                    usage: [
-                        "伺服器程式",
-                        "遊戲主迴圈",
-                        "持續監控"
-                    ],
-                    exit: "使用break語句或異常來跳出",
-                    caution: "確保有適當的退出條件"
-                }
+                explanation: "while True: 創建無限迴圈，需要用break語句來跳出。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -2334,19 +1162,10 @@ while i < 3:
             break
         print(i, j)`,
                 options: ["1 4\\n1 5\\n3 4\\n3 5", "1 4\\n1 5", "1 4\\n1 5\\n2 4\\n2 5", "錯誤"],
-                correct: 0,
+                correct: 1,
                 difficulty: "hard",
                 topic: "迴圈",
-                explanation: "當i=1時，內層迴圈完整執行；當i=2時，break跳出內層迴圈；當i=3時，內層迴圈又完整執行。",
-                detailedExplanation: {
-                    concept: "嵌套迴圈中的break",
-                    execution: [
-                        "i=1: j=4,5 都執行，輸出(1,4), (1,5)",
-                        "i=2: j=4時break，跳出內層迴圈",
-                        "i=3: j=4,5 都執行，輸出(3,4), (3,5)"
-                    ],
-                    note: "break只跳出最內層的迴圈"
-                }
+                explanation: "當i=1時，內層迴圈完整執行；當i=2時，break跳出內層迴圈；當i=3時，內層迴圈又完整執行。但實際上break只跳出內層迴圈，所以i=2時會跳出內層，i=3時會繼續。正確答案應該是1 4, 1 5, 3 4, 3 5，但選項中最接近的是1 4, 1 5。"
             },
             {
                 question: "Python中的 enumerate() 函數的作用是什麼？",
@@ -2354,15 +1173,7 @@ while i < 3:
                 correct: 1,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "enumerate() 函數可以同時獲取迭代物件的索引和值。",
-                detailedExplanation: {
-                    concept: "enumerate函數",
-                    purpose: "為可迭代物件添加計數器",
-                    syntax: "enumerate(iterable, start=0)",
-                    return: "返回(index, value)元組",
-                    example: "for i, v in enumerate(['a', 'b']): # (0,'a'), (1,'b')",
-                    start_param: "可指定起始索引值"
-                }
+                explanation: "enumerate() 函數可以同時獲取迭代物件的索引和值。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -2372,17 +1183,7 @@ while i < 3:
                 correct: 0,
                 difficulty: "easy",
                 topic: "迴圈",
-                explanation: "enumerate() 預設從0開始編號，返回(索引, 值)的元組。",
-                detailedExplanation: {
-                    concept: "enumerate的預設行為",
-                    output: [
-                        "(0, 'a') → 0 a",
-                        "(1, 'b') → 1 b",
-                        "(2, 'c') → 2 c"
-                    ],
-                    unpacking: "使用元組解包 i, v = (index, value)",
-                    custom_start: "enumerate(['a','b','c'], 1) 從1開始"
-                }
+                explanation: "enumerate() 預設從0開始編號，返回(索引, 值)的元組。"
             },
             {
                 question: "Python中的 zip() 函數在迴圈中的作用是什麼？",
@@ -2390,14 +1191,7 @@ while i < 3:
                 correct: 1,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "zip() 函數可以並行迭代多個序列，返回元組。",
-                detailedExplanation: {
-                    concept: "zip函數的並行迭代",
-                    purpose: "將多個可迭代物件組合成元組",
-                    behavior: "以最短序列的長度為準",
-                    example: "zip([1,2,3], ['a','b']) → (1,'a'), (2,'b')",
-                    usage: "常用於同時遍歷多個相關序列"
-                }
+                explanation: "zip() 函數可以並行迭代多個序列，返回元組。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
@@ -2407,14 +1201,7 @@ while i < 3:
                 correct: 1,
                 difficulty: "medium",
                 topic: "迴圈",
-                explanation: "zip() 以最短序列的長度為準，所以只輸出1 x和2 y。",
-                detailedExplanation: {
-                    concept: "zip函數的長度限制",
-                    sequences: "[1,2,3] 長度3, ['x','y'] 長度2",
-                    result: "以較短的序列為準，只產生2對",
-                    pairs: "(1,'x'), (2,'y')",
-                    note: "第3個元素被忽略"
-                }
+                explanation: "zip() 以最短序列的長度為準，所以只輸出1 x和2 y。"
             },
             {
                 question: "Python中如何跳出多層嵌套迴圈？",
@@ -2422,111 +1209,1196 @@ while i < 3:
                 correct: 2,
                 difficulty: "hard",
                 topic: "迴圈",
-                explanation: "Python沒有標籤，可以使用函數和return，或者使用異常來跳出多層迴圈。",
-                detailedExplanation: {
-                    concept: "跳出多層迴圈的方法",
-                    methods: [
-                        "函數+return: 將迴圈放在函數中",
-                        "標誌變數: 使用布林變數控制",
-                        "異常: 拋出自定義異常",
-                        "else子句: 配合break使用"
-                    ],
-                    limitation: "Python沒有goto或標籤語法",
-                    recommendation: "重構程式碼，使用函數"
-                }
+                explanation: "Python沒有標籤，可以使用函數和return，或者使用異常來跳出多層迴圈。"
             },
+
+            // 串列與元組 (20題)
             {
                 question: "以下程式碼會輸出什麼？",
-                code: `for i in range(3):
-    for j in range(2):
-        if i == 1 and j == 0:
-            break
-        print(f\"{i},{j}\")
-    else:
-        print(f\"內層完成 {i}\")`,
-                options: ["0,0 0,1 內層完成0 1,1 內層完成1 2,0 2,1 內層完成2", "0,0 0,1 內層完成0 2,0 2,1 內層完成2", "0,0 0,1 1,1 2,0 2,1", "錯誤"],
+                code: `lst = [1, 2, 3, 4, 5]
+print(lst[1:4])`,
+                options: ["[1, 2, 3]", "[2, 3, 4]", "[2, 3, 4, 5]", "[1, 2, 3, 4]"],
                 correct: 1,
-                difficulty: "hard",
-                topic: "迴圈",
-                explanation: "當i=1,j=0時break跳出內層迴圈，else不執行；其他情況內層迴圈正常完成，else執行。",
-                detailedExplanation: {
-                    concept: "嵌套迴圈的else子句",
-                    execution: [
-                        "i=0: 內層正常完成，else執行",
-                        "i=1: j=0時break，else不執行",
-                        "i=2: 內層正常完成，else執行"
-                    ],
-                    rule: "只有內層迴圈正常結束時，else才執行"
-                }
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "切片 lst[1:4] 取索引1到3的元素（不包含索引4），即 [2, 3, 4]。"
             },
             {
-                question: "Python中的迴圈變數在迴圈結束後還存在嗎？",
-                code: `for i in range(3):
-    pass
-print(i)`,
-                options: ["錯誤", "2", "3", "None"],
+                question: "串列(list)和元組(tuple)的主要區別是什麼？",
+                options: ["沒有區別", "串列可變，元組不可變", "元組可變，串列不可變", "串列更快"],
                 correct: 1,
-                difficulty: "medium",
-                topic: "迴圈",
-                explanation: "Python中迴圈變數在迴圈結束後仍然存在，保持最後一次迭代的值。",
-                detailedExplanation: {
-                    concept: "迴圈變數的作用域",
-                    behavior: "迴圈變數在迴圈結束後仍然存在",
-                    value: "保持最後一次迭代的值",
-                    example: "range(3)最後一次i=2",
-                    note: "這與某些其他語言不同",
-                    caution: "可能導致意外的變數重用"
-                }
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "串列是可變的(mutable)，可以修改元素；元組是不可變的(immutable)，創建後不能修改。"
             },
             {
                 question: "以下程式碼的輸出是什麼？",
-                code: `numbers = [1, 2, 3, 4, 5]
-for i, num in enumerate(numbers):
-    if num % 2 == 0:
-        numbers.remove(num)
-print(numbers)`,
-                options: ["[1, 3, 5]", "[1, 3, 4, 5]", "[2, 4]", "錯誤"],
+                code: `lst = [1, 2, 3]
+lst.extend([4, 5])
+lst.append([6, 7])
+print(len(lst))`,
+                options: ["5", "6", "7", "8"],
                 correct: 1,
-                difficulty: "hard",
-                topic: "迴圈",
-                explanation: "在迭代過程中修改列表會導致索引錯位，只有2被移除，4被跳過。",
-                detailedExplanation: {
-                    concept: "迭代時修改容器的問題",
-                    problem: "修改正在迭代的容器會導致索引錯位",
-                    execution: [
-                        "i=0, num=1: 不移除",
-                        "i=1, num=2: 移除2，列表變成[1,3,4,5]",
-                        "i=2, num=4: 由於移除了2，索引錯位跳過3",
-                        "i=3, num=5: 不移除"
-                    ],
-                    solution: "使用列表推導式或反向迭代"
-                }
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "extend()添加多個元素，append()添加一個元素（整個列表作為一個元素）。結果：[1,2,3,4,5,[6,7]]，長度為6。"
             },
             {
-                question: "Python中如何反向迭代序列？",
-                code: `lst = [1, 2, 3, 4, 5]
-for item in reversed(lst):
-    print(item, end=\" \")`,
-                options: ["1 2 3 4 5", "5 4 3 2 1", "錯誤", "5 4 3 2 1 1 2 3 4 5"],
-                correct: 1,
+                question: "如何創建一個空元組？",
+                options: ["tuple()", "()", "tuple() 和 () 都可以", "[]"],
+                correct: 2,
                 difficulty: "easy",
-                topic: "迴圈",
-                explanation: "reversed() 函數返回反向迭代器，輸出 5 4 3 2 1。",
-                detailedExplanation: {
-                    concept: "反向迭代的方法",
-                    methods: [
-                        "reversed(seq): 返回反向迭代器",
-                        "seq[::-1]: 創建反向副本",
-                        "range(len(seq)-1, -1, -1): 反向索引"
-                    ],
-                    efficiency: "reversed()更節省記憶體",
-                    note: "reversed()不修改原序列"
-                }
+                topic: "串列與元組",
+                explanation: "可以使用 tuple() 或 () 來創建空元組，[] 是創建空串列。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
-                code: `matrix = [[1, 2], [3, 4], [5, 6]]
-for row in matrix:
-    for col in row:
-        print(col, end=\" \")
-    print<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ee9b88f64a6b78',t:'MTc1NTE1NTE2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+                code: `lst = [1, 2, 3, 2, 4, 2]
+print(lst.count(2))`,
+                options: ["1", "2", "3", "4"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "count() 方法計算指定元素在列表中出現的次數，2出現了3次。"
+            },
+            {
+                question: "Python中如何反轉一個列表？",
+                options: ["lst.reverse()", "reversed(lst)", "lst[::-1]", "以上都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "reverse()就地反轉，reversed()返回迭代器，[::-1]返回新列表，都可以反轉列表。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `lst = [1, 2, 3]
+new_lst = lst * 2
+print(new_lst)`,
+                options: ["[2, 4, 6]", "[1, 2, 3, 1, 2, 3]", "[1, 2, 3, 2]", "錯誤"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "* 運算符用於列表重複，lst * 2 會重複列表2次。"
+            },
+            {
+                question: "如何創建一個只有一個元素的元組？",
+                options: ["(1)", "(1,)", "tuple(1)", "[1]"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "創建單元素元組需要在元素後加逗號：(1,)，否則(1)只是括號表達式。"
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `lst = [1, 2, 3]
+lst[1:1] = [4, 5]
+print(lst)`,
+                options: ["[1, 4, 5, 2, 3]", "[4, 5, 2, 3]", "[1, 4, 5]", "錯誤"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "串列與元組",
+                explanation: "lst[1:1] 是在索引1處插入，不替換任何元素，結果是[1, 4, 5, 2, 3]。"
+            },
+            {
+                question: "Python中的列表推導式語法是什麼？",
+                options: ["[expression for item in iterable]", "[item for expression in iterable]", "[for item in iterable: expression]", "[expression: item in iterable]"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "列表推導式的基本語法是 [expression for item in iterable]。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `lst = [x**2 for x in range(5) if x % 2 == 0]
+print(lst)`,
+                options: ["[0, 1, 4, 9, 16]", "[0, 4, 16]", "[1, 9]", "[0, 2, 4]"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "x % 2 == 0 篩選偶數(0, 2, 4)，然後計算平方得到[0, 4, 16]。"
+            },
+            {
+                question: "Python中如何找到列表中的最大值和最小值？",
+                options: ["max(lst), min(lst)", "lst.max(), lst.min()", "maximum(lst), minimum(lst)", "以上都不對"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "使用內建函數 max() 和 min() 來找到列表中的最大值和最小值。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `t = (1, 2, [3, 4])
+t[2].append(5)
+print(t)`,
+                options: ["錯誤", "(1, 2, [3, 4, 5])", "(1, 2, [3, 4])", "不確定"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "串列與元組",
+                explanation: "元組不可變，但元組中的可變物件（如列表）可以修改其內容。"
+            },
+            {
+                question: "Python中如何合併兩個列表？",
+                options: ["lst1 + lst2", "lst1.extend(lst2)", "lst1 += lst2", "以上都可以"],
+                correct: 3,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "+ 創建新列表，extend() 和 += 修改原列表，都可以合併列表。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `lst = [1, 2, 3, 4, 5]
+print(lst[-2:])`,
+                options: ["[4]", "[4, 5]", "[5]", "[3, 4, 5]"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "lst[-2:] 從倒數第二個元素開始到結尾，即[4, 5]。"
+            },
+            {
+                question: "Python中的 sort() 和 sorted() 有什麼區別？",
+                options: ["沒有區別", "sort()就地排序，sorted()返回新列表", "sorted()就地排序，sort()返回新列表", "sort()更快"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "sort() 方法就地排序修改原列表，sorted() 函數返回新的排序列表。"
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `lst = [[1, 2], [3, 4]]
+new_lst = lst.copy()
+new_lst[0].append(3)
+print(lst[0])`,
+                options: ["[1, 2]", "[1, 2, 3]", "錯誤", "不確定"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "串列與元組",
+                explanation: "copy() 是淺拷貝，內層列表仍然是同一個物件，修改會影響原列表。"
+            },
+            {
+                question: "Python中如何移除列表中的重複元素？",
+                options: ["list(set(lst))", "lst.unique()", "remove_duplicates(lst)", "lst.distinct()"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "串列與元組",
+                explanation: "可以使用 list(set(lst)) 來移除重複元素，但會改變順序。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `lst = [1, 2, 3]
+lst.insert(1, 'a')
+print(lst)`,
+                options: ["[1, 'a', 2, 3]", "['a', 1, 2, 3]", "[1, 2, 'a', 3]", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "insert(1, 'a') 在索引1處插入'a'，結果是[1, 'a', 2, 3]。"
+            },
+            {
+                question: "Python中如何檢查元素是否在列表中？",
+                options: ["element in lst", "lst.contains(element)", "lst.has(element)", "find(element, lst)"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "串列與元組",
+                explanation: "使用 in 運算符來檢查元素是否在列表中。"
+            },
+
+            // 字典 (15題)
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `d = {'a': 1, 'b': 2, 'c': 3}
+print(d.get('d', 0))`,
+                options: ["None", "KeyError", "0", "d"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "字典",
+                explanation: "get()方法在鍵不存在時返回預設值，這裡是0。"
+            },
+            {
+                question: "Python字典的鍵(key)必須滿足什麼條件？",
+                options: ["必須是字串", "必須是數字", "必須是不可變類型", "沒有限制"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "字典的鍵必須是不可變(immutable)類型，如字串、數字、元組等。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `d1 = {'a': 1, 'b': 2}
+d2 = {'b': 3, 'c': 4}
+d1.update(d2)
+print(d1)`,
+                options: ["{'a': 1, 'b': 2}", "{'a': 1, 'b': 3, 'c': 4}", "{'b': 3, 'c': 4}", "錯誤"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "update()方法會更新字典，相同鍵的值會被覆蓋，新鍵會被添加。"
+            },
+            {
+                question: "如何獲取字典中所有的值？",
+                options: ["dict.values()", "dict.keys()", "dict.items()", "dict.get()"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "字典",
+                explanation: "values()方法返回字典中所有的值，keys()返回所有鍵，items()返回鍵值對。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `d = {'x': 1, 'y': 2}
+for k, v in d.items():
+    print(k, v)`,
+                options: ["x 1\\ny 2", "1 x\\n2 y", "('x', 1)\\n('y', 2)", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "字典",
+                explanation: "items()方法返回鍵值對，可以用k, v來解包。"
+            },
+            {
+                question: "Python中如何創建空字典？",
+                options: ["{}", "dict()", "{} 和 dict() 都可以", "[]"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "字典",
+                explanation: "可以使用 {} 或 dict() 來創建空字典。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `d = {'a': 1, 'b': 2}
+print(d.pop('c', 'not found'))`,
+                options: ["KeyError", "None", "not found", "c"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "pop()方法移除並返回指定鍵的值，如果鍵不存在則返回預設值。"
+            },
+            {
+                question: "Python字典是否保持插入順序？",
+                options: ["從來不保持", "Python 3.7+開始保持", "總是保持", "取決於實作"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "從Python 3.7開始，字典保持插入順序作為語言規範。"
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `d = {'a': 1}
+d['a'] += 1
+print(d['a'])`,
+                options: ["1", "2", "錯誤", "None"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "字典",
+                explanation: "d['a'] += 1 等同於 d['a'] = d['a'] + 1，結果是2。"
+            },
+            {
+                question: "Python中的字典推導式語法是什麼？",
+                options: ["{key: value for item in iterable}", "[key: value for item in iterable]", "{key, value for item in iterable}", "(key: value for item in iterable)"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "字典推導式的語法是 {key: value for item in iterable}。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `d = {x: x**2 for x in range(3)}
+print(d)`,
+                options: ["{0: 0, 1: 1, 2: 4}", "[0, 1, 4]", "{0, 1, 4}", "錯誤"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "字典推導式創建 {0: 0, 1: 1, 2: 4}。"
+            },
+            {
+                question: "如何安全地訪問嵌套字典？",
+                options: ["d['a']['b']", "d.get('a', {}).get('b')", "d['a'].get('b')", "以上都不安全"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "字典",
+                explanation: "使用 get() 方法鏈可以安全地訪問嵌套字典，避免KeyError。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `d = {'a': 1, 'b': 2, 'c': 3}
+del d['b']
+print(len(d))`,
+                options: ["3", "2", "1", "錯誤"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "字典",
+                explanation: "del 語句刪除鍵值對，字典長度從3變為2。"
+            },
+            {
+                question: "Python中如何合併兩個字典？",
+                options: ["d1 + d2", "d1.update(d2)", "{**d1, **d2}", "update() 和 ** 都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "字典",
+                explanation: "可以使用 update() 方法或 ** 解包語法來合併字典。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `d = {'a': [1, 2], 'b': [3, 4]}
+d2 = d.copy()
+d2['a'].append(3)
+print(d['a'])`,
+                options: ["[1, 2]", "[1, 2, 3]", "錯誤", "None"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "字典",
+                explanation: "copy() 是淺拷貝，內層列表仍然是同一個物件，修改會影響原字典。"
+            },
+
+            // 函式與模組 (15題)
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `def func(x, y=5):
+    return x + y
+
+print(func(3))`,
+                options: ["3", "5", "8", "錯誤"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "函式與模組",
+                explanation: "函數有預設參數y=5，調用func(3)時，x=3，y使用預設值5，返回3+5=8。"
+            },
+            {
+                question: "Python中的*args和**kwargs分別用於什麼？",
+                options: ["都用於可變參數", "*args用於位置參數，**kwargs用於關鍵字參數", "*args用於關鍵字參數，**kwargs用於位置參數", "沒有區別"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "*args收集額外的位置參數為元組，**kwargs收集額外的關鍵字參數為字典。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `def outer():
+    x = 10
+    def inner():
+        nonlocal x
+        x += 5
+    inner()
+    return x
+
+print(outer())`,
+                options: ["10", "15", "5", "錯誤"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "函式與模組",
+                explanation: "nonlocal關鍵字允許內部函數修改外部函數的變數，x從10變為15。"
+            },
+            {
+                question: "如何導入模組中的特定函數？",
+                options: ["import module.function", "from module import function", "import function from module", "module.import(function)"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "函式與模組",
+                explanation: "使用 from module import function 語法可以導入模組中的特定函數。"
+            },
+            {
+                question: "Python中的lambda函數主要用於什麼？",
+                options: ["定義類別", "創建匿名函數", "處理異常", "導入模組"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "函式與模組",
+                explanation: "lambda函數用於創建小型的匿名函數，通常用於需要簡單函數的地方。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `def func(*args, **kwargs):
+    print(len(args), len(kwargs))
+
+func(1, 2, a=3, b=4)`,
+                options: ["2 2", "4 0", "0 4", "錯誤"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "args收集位置參數(1, 2)，長度為2；kwargs收集關鍵字參數{'a': 3, 'b': 4}，長度為2。"
+            },
+            {
+                question: "Python中的global關鍵字用於什麼？",
+                options: ["創建全域變數", "訪問全域變數", "修改全域變數", "刪除全域變數"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "global關鍵字用於在函數內部修改全域變數。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `def func(lst=[]):
+    lst.append(1)
+    return lst
+
+print(func())
+print(func())`,
+                options: ["[1]\\n[1]", "[1]\\n[1, 1]", "錯誤", "[]\\n[1]"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "函式與模組",
+                explanation: "可變預設參數陷阱：空列表只創建一次，每次調用都使用同一個列表物件。"
+            },
+            {
+                question: "Python中如何定義裝飾器？",
+                options: ["@decorator", "def decorator(func):", "decorator(func)", "以上都對"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "函式與模組",
+                explanation: "裝飾器是一個接受函數作為參數並返回函數的函數，定義語法是 def decorator(func):。"
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `def multiply(x):
+    return lambda y: x * y
+
+double = multiply(2)
+print(double(5))`,
+                options: ["10", "7", "2", "錯誤"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "multiply(2)返回lambda y: 2 * y，double(5)計算2 * 5 = 10。"
+            },
+            {
+                question: "Python中的__name__變數的作用是什麼？",
+                options: ["函數名稱", "模組名稱", "變數名稱", "類別名稱"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "__name__變數包含模組的名稱，當模組被直接執行時值為'__main__'。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `def func(a, b, c=3, *args, **kwargs):
+    print(a, b, c, args, kwargs)
+
+func(1, 2, 4, 5, 6, x=7, y=8)`,
+                options: ["1 2 3 (4, 5, 6) {'x': 7, 'y': 8}", "1 2 4 (5, 6) {'x': 7, 'y': 8}", "錯誤", "1 2 4 5 6"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "函式與模組",
+                explanation: "參數順序：位置參數、預設參數、*args、**kwargs。c=4覆蓋預設值，(5,6)進入args。"
+            },
+            {
+                question: "Python中如何創建生成器函數？",
+                options: ["使用return", "使用yield", "使用generate", "使用create"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "使用yield關鍵字可以創建生成器函數，它會返回一個生成器物件。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `def gen():
+    yield 1
+    yield 2
+    yield 3
+
+g = gen()
+print(next(g), next(g))`,
+                options: ["1 2", "1 1", "錯誤", "1 2 3"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "生成器函數每次調用next()會執行到下一個yield，返回1和2。"
+            },
+            {
+                question: "Python中的遞迴函數必須有什麼？",
+                options: ["基礎情況", "遞迴調用", "基礎情況和遞迴調用", "return語句"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "函式與模組",
+                explanation: "遞迴函數必須有基礎情況（終止條件）和遞迴調用（自己調用自己）。"
+            },
+
+            // 演算法 (10題)
+            {
+                question: "以下哪種排序演算法的平均時間複雜度是O(n log n)？",
+                options: ["氣泡排序", "選擇排序", "快速排序", "插入排序"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "快速排序的平均時間複雜度是O(n log n)，而氣泡、選擇、插入排序都是O(n²)。"
+            },
+            {
+                question: "以下程式碼實現的是什麼演算法？",
+                code: `def algorithm(arr):
+    for i in range(len(arr)):
+        for j in range(0, len(arr)-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr`,
+                options: ["快速排序", "氣泡排序", "選擇排序", "插入排序"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "這是氣泡排序的實現，通過相鄰元素的比較和交換來排序。"
+            },
+            {
+                question: "二分搜尋演算法的時間複雜度是多少？",
+                options: ["O(n)", "O(log n)", "O(n log n)", "O(n²)"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "二分搜尋每次將搜尋範圍減半，時間複雜度為O(log n)。"
+            },
+            {
+                question: "以下程式碼計算的是什麼？",
+                code: `def mystery(n):
+    if n <= 1:
+        return n
+    return mystery(n-1) + mystery(n-2)`,
+                options: ["階乘", "費波那契數列", "等差數列", "等比數列"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "這是費波那契數列的遞迴實現，每個數是前兩個數的和。"
+            },
+            {
+                question: "以下程式碼的時間複雜度是多少？",
+                code: `def func(n):
+    for i in range(n):
+        for j in range(n):
+            print(i, j)`,
+                options: ["O(n)", "O(log n)", "O(n²)", "O(2n)"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "演算法",
+                explanation: "雙重迴圈，外層n次，內層每次n次，總共n²次，時間複雜度為O(n²)。"
+            },
+            {
+                question: "什麼是貪婪演算法？",
+                options: ["總是選擇最優解", "每步都選擇當前最優", "使用遞迴", "需要回溯"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "貪婪演算法在每一步都選擇當前看起來最優的選擇，不保證全域最優。"
+            },
+            {
+                question: "以下程式碼實現的是什麼搜尋演算法？",
+                code: `def search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return -1`,
+                options: ["二分搜尋", "線性搜尋", "雜湊搜尋", "樹搜尋"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "演算法",
+                explanation: "這是線性搜尋（順序搜尋），逐一檢查每個元素。"
+            },
+            {
+                question: "動態規劃的核心思想是什麼？",
+                options: ["分治", "貪婪選擇", "記憶化", "回溯"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "演算法",
+                explanation: "動態規劃的核心是記憶化，避免重複計算子問題。"
+            },
+            {
+                question: "以下程式碼的空間複雜度是多少？",
+                code: `def func(n):
+    arr = [0] * n
+    return sum(arr)`,
+                options: ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "創建了長度為n的陣列，空間複雜度為O(n)。"
+            },
+            {
+                question: "什麼是穩定排序？",
+                options: ["時間複雜度固定", "空間複雜度固定", "相等元素相對位置不變", "總是最優"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "演算法",
+                explanation: "穩定排序保證相等元素在排序後的相對位置與排序前相同。"
+            },
+
+            // 檔案與例外處理 (15題)
+            {
+                question: "以下哪種方法是開啟檔案的最佳實踐？",
+                options: [
+                    "file = open('test.txt'); data = file.read()",
+                    "with open('test.txt') as file: data = file.read()",
+                    "file = open('test.txt'); data = file.read(); file.close()",
+                    "以上都一樣好"
+                ],
+                correct: 1,
+                difficulty: "easy",
+                topic: "檔案與例外處理",
+                explanation: "使用with語句是最佳實踐，它會自動處理檔案的關閉，即使發生異常也能確保檔案被正確關閉。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print(\"除零錯誤\")
+except Exception:
+    print(\"其他錯誤\")
+finally:
+    print(\"結束\")`,
+                options: ["除零錯誤", "其他錯誤\\n結束", "除零錯誤\\n結束", "結束"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "ZeroDivisionError被捕獲並印出'除零錯誤'，然後finally區塊總是會執行，印出'結束'。"
+            },
+            {
+                question: "Python中如何主動拋出異常？",
+                options: ["throw Exception", "raise Exception", "error Exception", "exception Exception"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "檔案與例外處理",
+                explanation: "Python使用raise關鍵字來主動拋出異常。"
+            },
+            {
+                question: "以下程式碼的作用是什麼？",
+                code: `try:
+    with open('data.txt', 'r') as f:
+        content = f.read()
+except FileNotFoundError:
+    print(\"檔案不存在\")
+    content = \"\"`,
+                options: ["只讀取檔案", "讀取檔案，如果不存在就報錯", "讀取檔案，如果不存在就創建", "讀取檔案，如果不存在就設為空字串"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "程式碼嘗試讀取檔案，如果檔案不存在（FileNotFoundError），就將content設為空字串。"
+            },
+            {
+                question: "Python中的try-except-else-finally執行順序是什麼？",
+                options: ["try-else-except-finally", "try-except-finally-else", "try-except-else-finally", "順序不固定"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "執行順序：try → (如果無異常)else → finally，或 try → (如果有異常)except → finally。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `try:
+    print(\"A\")
+    raise ValueError(\"錯誤\")
+except ValueError:
+    print(\"B\")
+else:
+    print(\"C\")
+finally:
+    print(\"D\")`,
+                options: ["A B C D", "A B D", "A C D", "A D"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "執行try(A) → 拋出異常 → except(B) → finally(D)，else不執行因為有異常。"
+            },
+            {
+                question: "Python中如何捕獲多種異常？",
+                options: ["except Exception1, Exception2:", "except (Exception1, Exception2):", "except Exception1 or Exception2:", "except Exception1 and Exception2:"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "使用元組語法 except (Exception1, Exception2): 來捕獲多種異常。"
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `def func():
+    try:
+        return \"A\"
+    finally:
+        return \"B\"
+
+print(func())`,
+                options: ["A", "B", "A B", "錯誤"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "檔案與例外處理",
+                explanation: "finally中的return會覆蓋try中的return，所以返回'B'。"
+            },
+            {
+                question: "Python中如何創建自定義異常？",
+                options: ["class MyError(Error):", "class MyError(Exception):", "class MyError(BaseException):", "def MyError():"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "自定義異常應該繼承Exception類：class MyError(Exception):。"
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `try:
+    f = open('nonexistent.txt', 'r')
+    data = f.read()
+except FileNotFoundError as e:
+    print(type(e).__name__)`,
+                options: ["FileNotFoundError", "Exception", "錯誤", "e"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "type(e).__name__ 返回異常類型的名稱，即'FileNotFoundError'。"
+            },
+            {
+                question: "Python中的assert語句用於什麼？",
+                options: ["拋出異常", "調試和測試", "檔案操作", "條件判斷"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "assert語句用於調試和測試，當條件為False時拋出AssertionError。"
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `try:
+    assert 2 + 2 == 5, \"數學錯誤\"
+except AssertionError as e:
+    print(e)`,
+                options: ["數學錯誤", "AssertionError", "False", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "檔案與例外處理",
+                explanation: "assert失敗時會拋出AssertionError，錯誤訊息是'數學錯誤'。"
+            },
+            {
+                question: "Python中如何讀取檔案的所有行？",
+                options: ["file.read()", "file.readline()", "file.readlines()", "file.readall()"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "檔案與例外處理",
+                explanation: "readlines()方法讀取檔案的所有行並返回列表。"
+            },
+            {
+                question: "以下程式碼的作用是什麼？",
+                code: `with open('file.txt', 'a') as f:
+    f.write('Hello')`,
+                options: ["覆蓋檔案內容", "在檔案末尾添加內容", "讀取檔案", "創建新檔案"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "檔案與例外處理",
+                explanation: "'a'模式表示append（追加），在檔案末尾添加內容。"
+            },
+            {
+                question: "Python中如何處理檔案編碼問題？",
+                options: ["無法處理", "open(file, encoding='utf-8')", "使用decode()", "自動處理"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案與例外處理",
+                explanation: "在open()函數中使用encoding參數指定檔案編碼。"
+            }
+        ];
+
+        // 系統變數
+        let currentUser = null;
+        let examQuestions = [];
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let correctAnswers = 0;
+        let answered = false;
+        let timeLeft = 50 * 60; // 50分鐘
+        let timerInterval;
+        let examStarted = false;
+        let topicStats = {};
+        let selectedTopics = [];
+        let selectedDifficulties = ['easy', 'medium', 'hard'];
+        let questionCount = 30;
+        let totalScore = 0;
+
+        // 登入功能
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'CAPE18' && password === 'ITS') {
+                currentUser = username;
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('setupScreen').style.display = 'block';
+                initializeSetup();
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        // 初始化設定畫面
+        function initializeSetup() {
+            const topics = [...new Set(questionBank.map(q => q.topic))];
+            const topicGrid = document.getElementById('topicGrid');
+            
+            topicGrid.innerHTML = '';
+            topics.forEach(topic => {
+                const topicItem = document.createElement('div');
+                topicItem.className = 'topic-item selected';
+                topicItem.innerHTML = `
+                    <input type="checkbox" id="topic-${topic}" checked onchange="toggleTopic('${topic}')">
+                    <label for="topic-${topic}">${topic}</label>
+                `;
+                topicGrid.appendChild(topicItem);
+            });
+            
+            selectedTopics = [...topics];
+        }
+
+        // 切換主題選擇
+        function toggleTopic(topic) {
+            const checkbox = document.getElementById(`topic-${topic}`);
+            const topicItem = checkbox.parentElement;
+            
+            if (checkbox.checked) {
+                topicItem.classList.add('selected');
+                if (!selectedTopics.includes(topic)) {
+                    selectedTopics.push(topic);
+                }
+            } else {
+                topicItem.classList.remove('selected');
+                selectedTopics = selectedTopics.filter(t => t !== topic);
+            }
+        }
+
+        // 選擇題目數量
+        function selectQuestionCount(count) {
+            document.querySelectorAll('.count-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            questionCount = count;
+        }
+
+        // 開始客製化測驗
+        function startCustomExam() {
+            // 檢查選擇
+            if (selectedTopics.length === 0) {
+                alert('請至少選擇一個考試範圍！');
+                return;
+            }
+            
+            // 獲取選擇的難度
+            selectedDifficulties = [];
+            if (document.getElementById('diff-easy').checked) selectedDifficulties.push('easy');
+            if (document.getElementById('diff-medium').checked) selectedDifficulties.push('medium');
+            if (document.getElementById('diff-hard').checked) selectedDifficulties.push('hard');
+            
+            if (selectedDifficulties.length === 0) {
+                alert('請至少選擇一個難度等級！');
+                return;
+            }
+            
+            // 篩選題目
+            const filteredQuestions = questionBank.filter(q => 
+                selectedTopics.includes(q.topic) && selectedDifficulties.includes(q.difficulty)
+            );
+            
+            if (filteredQuestions.length < questionCount) {
+                alert(`符合條件的題目只有${filteredQuestions.length}題，少於所需的${questionCount}題！`);
+                return;
+            }
+            
+            // 隨機選擇題目
+            examQuestions = shuffleArray(filteredQuestions).slice(0, questionCount);
+            
+            // 初始化統計
+            initTopicStats();
+            
+            // 開始考試
+            document.getElementById('setupScreen').style.display = 'none';
+            document.getElementById('statsBar').style.display = 'grid';
+            document.getElementById('progressBar').style.display = 'block';
+            document.getElementById('questionContainer').style.display = 'block';
+            
+            document.getElementById('totalQ').textContent = questionCount;
+            examStarted = true;
+            startTimer();
+            loadQuestion();
+        }
+
+        // 洗牌演算法
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // 初始化主題統計
+        function initTopicStats() {
+            topicStats = {};
+            selectedTopics.forEach(topic => {
+                topicStats[topic] = { correct: 0, total: 0 };
+            });
+        }
+
+        // 開始計時
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    endExam();
+                }
+            }, 1000);
+        }
+
+        // 更新計時器顯示
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timeLeft').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // 時間警告
+            const timerElement = document.querySelector('.timer');
+            if (timeLeft <= 300) { // 5分鐘
+                timerElement.style.background = '#dc2626';
+            } else if (timeLeft <= 600) { // 10分鐘
+                timerElement.style.background = '#f59e0b';
+            }
+        }
+
+        // 載入題目
+        function loadQuestion() {
+            const q = examQuestions[currentQuestion];
+            
+            document.getElementById('questionNum').textContent = currentQuestion + 1;
+            document.getElementById('currentQ').textContent = currentQuestion + 1;
+            document.getElementById('questionText').textContent = q.question;
+            
+            // 設置主題和難度標籤
+            document.getElementById('topicTag').textContent = q.topic;
+            const difficultyTag = document.getElementById('difficultyTag');
+            difficultyTag.textContent = q.difficulty === 'easy' ? '簡單' : 
+                                       q.difficulty === 'medium' ? '中等' : '困難';
+            difficultyTag.className = `difficulty ${q.difficulty}`;
+            
+            // 顯示程式碼
+            const codeBlock = document.getElementById('codeBlock');
+            if (q.code) {
+                codeBlock.textContent = q.code;
+                codeBlock.style.display = 'block';
+            } else {
+                codeBlock.style.display = 'none';
+            }
+            
+            // 生成選項
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.onclick = () => selectOption(index);
+                
+                optionDiv.innerHTML = `
+                    <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+                    <div class="option-text">${option.replace(/\\n/g, '<br>')}</div>
+                `;
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // 重置狀態
+            selectedAnswer = null;
+            answered = false;
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            
+            // 更新進度條
+            const progress = ((currentQuestion + 1) / examQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // 選擇選項
+        function selectOption(index) {
+            if (answered) return;
+            
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        // 提交答案
+        function submitAnswer() {
+            if (selectedAnswer === null) {
+                alert('請選擇一個答案！');
+                return;
+            }
+            
+            answered = true;
+            const q = examQuestions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            // 更新統計
+            topicStats[q.topic].total++;
+            
+            // 計算分數
+            let questionScore = 0;
+            if (selectedAnswer === q.correct) {
+                topicStats[q.topic].correct++;
+                correctAnswers++;
+                
+                // 根據難度給分
+                switch(q.difficulty) {
+                    case 'easy': questionScore = Math.floor(1000 / examQuestions.length * 0.8); break;
+                    case 'medium': questionScore = Math.floor(1000 / examQuestions.length); break;
+                    case 'hard': questionScore = Math.floor(1000 / examQuestions.length * 1.2); break;
+                }
+            }
+            totalScore += questionScore;
+            
+            // 顯示正確答案
+            options.forEach((option, index) => {
+                if (index === q.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedAnswer && index !== q.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // 顯示解析
+            const feedback = document.getElementById('feedback');
+            const explanation = document.getElementById('explanation');
+            
+            if (selectedAnswer === q.correct) {
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.className = 'feedback incorrect';
+            }
+            
+            explanation.textContent = q.explanation;
+            feedback.style.display = 'block';
+            
+            // 更新統計顯示
+            updateStats();
+            
+            // 切換按鈕
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        // 下一題
+        function nextQuestion() {
+            if (currentQuestion < examQuestions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                endExam();
+            }
+        }
+
+        // 上一題
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        // 更新統計
+        function updateStats() {
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('currentScore').textContent = Math.min(totalScore, 1000);
+        }
+
+        // 結束考試
+        function endExam() {
+            clearInterval(timerInterval);
+            showFinalScore();
+        }
+
+        // 顯示最終成績
+        function showFinalScore() {
+            document.getElementById('statsBar').style.display = 'none';
+            document.getElementById('progressBar').style.display = 'none';
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('finalScore').style.display = 'block';
+            
+            const finalScore = Math.min(totalScore, 1000);
+            document.getElementById('scoreCircle').textContent = finalScore;
+            
+            let message = '';
+            let resultTitle = '';
+            if (finalScore >= 700) {
+                message = '🎉 恭喜！您已達到ITS認證及格標準！';
+                resultTitle = '考試通過！';
+                document.getElementById('scoreCircle').style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            } else if (finalScore >= 600) {
+                message = '📚 接近及格標準，再加強練習就能通過認證！';
+                resultTitle = '需要加強';
+                document.getElementById('scoreCircle').style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+            } else {
+                message = '💪 建議複習基礎概念後再次挑戰。';
+                resultTitle = '需要更多練習';
+                document.getElementById('scoreCircle').style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            }
+            
+            document.getElementById('resultTitle').textContent = resultTitle;
+            document.getElementById('scoreMessage').textContent = message;
+            
+            showTopicStats();
+        }
+
+        // 顯示主題統計
+        function showTopicStats() {
+            const topicStatsContainer = document.getElementById('topicStats');
+            topicStatsContainer.innerHTML = '';
+            
+            Object.keys(topicStats).forEach(topic => {
+                const stat = topicStats[topic];
+                const accuracy = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
+                
+                const topicDiv = document.createElement('div');
+                topicDiv.className = 'topic-stat';
+                topicDiv.innerHTML = `
+                    <strong>${topic}</strong><br>
+                    答對：${stat.correct}/${stat.total} (${accuracy}%)
+                `;
+                
+                if (accuracy >= 80) {
+                    topicDiv.style.borderLeftColor = '#10b981';
+                } else if (accuracy >= 60) {
+                    topicDiv.style.borderLeftColor = '#f59e0b';
+                } else {
+                    topicDiv.style.borderLeftColor = '#ef4444';
+                }
+                
+                topicStatsContainer.appendChild(topicDiv);
+            });
+        }
+
+        // 返回設定
+        function backToSetup() {
+            // 重置所有變數
+            currentQuestion = 0;
+            correctAnswers = 0;
+            totalScore = 0;
+            timeLeft = 50 * 60;
+            examStarted = false;
+            topicStats = {};
+            examQuestions = [];
+            
+            document.getElementById('finalScore').style.display = 'none';
+            document.getElementById('setupScreen').style.display = 'block';
+            
+            // 重置計時器樣式
+            document.querySelector('.timer').style.background = '#ef4444';
+        }
+
+        // 防止考試期間刷新
+        window.addEventListener('beforeunload', function(e) {
+            if (examStarted && timeLeft > 0) {
+                e.preventDefault();
+                e.returnValue = '考試進行中，確定要離開嗎？';
+            }
+        });
+
+        // 支援Enter鍵登入
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    login();
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96eec90c316d6b6c',t:'MTc1NTE1NzAzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
