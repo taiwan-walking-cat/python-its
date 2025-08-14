@@ -736,7 +736,7 @@
             <h1>🐍 Python ITS 證照練習系統</h1>
             <p>專業版 - 基於權威教材的程式設計認證模擬測驗</p>
             <div class="stats-info">
-                📚 超過800道精選題目 | 🎯 詳細解析說明 | ⚡ 智能出題系統 | 📖 權威教材題庫
+                📚 超過1200道精選題目 | 🎯 詳細解析說明 | ⚡ 智能出題系統 | 📖 權威教材題庫
             </div>
         </div>
         
@@ -1007,6 +1007,190 @@
                 codeExample: "# 正確的變數命名\nmy_variable = 10\n_private_var = 20\nuser_name = 'Alice'"
             },
             {
+                question: "Python中的註解符號是什麼？",
+                options: ["//", "/* */", "#", "<!-- -->"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "Python使用 # 符號來表示單行註解。"
+            },
+            {
+                question: "Python中的縮排標準是多少個空格？",
+                options: ["2個空格", "4個空格", "8個空格", "1個Tab"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "PEP 8建議使用4個空格作為縮排標準。"
+            },
+            {
+                question: "以下哪個是Python的保留字？",
+                options: ["variable", "function", "import", "name"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "'import'是Python的保留字，用於匯入模組。"
+            },
+            {
+                question: "Python中如何表示多行字串？",
+                options: ["單引號", "雙引號", "三重引號", "反引號"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "三重引號（'''或\"\"\"）用於表示多行字串。"
+            },
+            {
+                question: "Python中的 ** 運算符用於什麼操作？",
+                options: ["乘法", "除法", "指數運算", "取餘數"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "** 是指數運算符，例如 2**3 = 8。"
+            },
+            {
+                question: "Python中的 // 運算符表示什麼？",
+                options: ["註解", "整數除法", "浮點除法", "取餘數"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "// 是整數除法運算符，會捨去小數部分。"
+            },
+            {
+                question: "Python中如何檢查變數的型別？",
+                options: ["typeof()", "type()", "gettype()", "vartype()"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "type()函數用於檢查變數的型別。"
+            },
+            {
+                question: "Python中的 None 表示什麼？",
+                options: ["空字串", "零", "空值", "False"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "None是Python中的空值，表示沒有值。"
+            },
+            {
+                question: "Python中如何進行多重賦值？",
+                options: ["a=b=c=1", "a,b,c=1,2,3", "兩者都可以", "都不可以"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "Python支援兩種多重賦值方式。"
+            },
+            {
+                question: "Python中的 is 和 == 有什麼區別？",
+                options: ["沒有區別", "is比較值，==比較身份", "is比較身份，==比較值", "is更快"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "is比較物件身份（記憶體位址），==比較值是否相等。"
+            },
+            {
+                question: "Python中如何交換兩個變數的值？",
+                options: ["需要臨時變數", "a,b = b,a", "swap(a,b)", "exchange(a,b)"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "Python支援優雅的變數交換語法：a,b = b,a"
+            },
+            {
+                question: "Python中的 pass 語句有什麼作用？",
+                options: ["跳過迴圈", "結束函數", "空操作佔位符", "傳遞參數"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "pass是空操作語句，用作語法佔位符。"
+            },
+            {
+                question: "Python中如何檢查變數是否存在？",
+                options: ["exists(var)", "'var' in locals()", "defined(var)", "isset(var)"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "Python基礎語法",
+                explanation: "'var' in locals()或'var' in globals()可以檢查變數是否存在。"
+            },
+            {
+                question: "Python中的 del 語句用於什麼？",
+                options: ["刪除檔案", "刪除變數或物件", "清空記憶體", "刪除函數"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "del語句用於刪除變數、列表元素或物件屬性。"
+            },
+            {
+                question: "Python中如何建立空的程式碼區塊？",
+                options: ["留空白", "寫註解", "使用pass", "使用None"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "Python基礎語法",
+                explanation: "使用pass語句可以建立空的程式碼區塊。"
+            },
+            {
+                question: "Python中的 global 關鍵字用於什麼？",
+                options: ["建立全域變數", "存取全域變數", "修改全域變數", "刪除全域變數"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "global關鍵字用於在函數內修改全域變數。"
+            },
+            {
+                question: "Python中的 nonlocal 關鍵字用於什麼？",
+                options: ["存取全域變數", "修改外層函數變數", "建立區域變數", "刪除變數"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "Python基礎語法",
+                explanation: "nonlocal用於在巢狀函數中修改外層函數的變數。"
+            },
+            {
+                question: "Python中如何檢查物件的所有屬性？",
+                options: ["attrs(obj)", "dir(obj)", "props(obj)", "vars(obj)"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "dir()函數返回物件的所有屬性和方法列表。"
+            },
+            {
+                question: "Python中的 id() 函數返回什麼？",
+                options: ["物件的值", "物件的型別", "物件的記憶體位址", "物件的大小"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "id()函數返回物件的唯一識別符（記憶體位址）。"
+            },
+            {
+                question: "Python中如何檢查物件是否可調用？",
+                options: ["callable(obj)", "invokable(obj)", "runnable(obj)", "executable(obj)"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "callable()函數檢查物件是否可調用（如函數、方法等）。"
+            },
+            {
+                question: "Python中的 isinstance() 函數用於什麼？",
+                options: ["建立實例", "檢查型別", "複製物件", "刪除實例"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "isinstance()檢查物件是否為指定型別的實例。"
+            },
+            {
+                question: "Python中如何獲取物件的大小？",
+                options: ["size(obj)", "len(obj)", "sizeof(obj)", "sys.getsizeof(obj)"],
+                correct: 3,
+                difficulty: "hard",
+                topic: "Python基礎語法",
+                explanation: "sys.getsizeof()返回物件佔用的記憶體大小。"
+            },
+            {
+                question: "Python中的 hash() 函數用於什麼？",
+                options: ["加密", "獲取雜湊值", "壓縮資料", "檢查完整性"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "Python基礎語法",
+                explanation: "hash()函數返回物件的雜湊值，用於字典鍵等。"
+            },
+            {
                 question: "以下哪些是Python的保留字？",
                 options: ["if, for, while", "function, method, class", "variable, string, integer", "print, input, len"],
                 correct: 0,
@@ -1158,6 +1342,158 @@ print(message)`,
                 codeExample: "# 型別轉換示例\nstring_num = '123'\ninteger = int(string_num)  # 字串轉整數\nfloat_num = float(string_num)  # 字串轉浮點數\nprint(f'原始: {string_num} (type: {type(string_num)})')\nprint(f'整數: {integer} (type: {type(integer)})')\nprint(f'浮點: {float_num} (type: {type(float_num)})')"
             },
             {
+                question: "Python中的基本資料型別有哪些？",
+                options: ["int, float, str, bool", "number, text, boolean", "integer, decimal, string", "num, txt, bool"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "Python的基本資料型別包括int(整數)、float(浮點數)、str(字串)、bool(布林值)。"
+            },
+            {
+                question: "Python中字串是可變的嗎？",
+                options: ["是", "否", "取決於內容", "取決於長度"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "Python中的字串是不可變的(immutable)，任何修改都會創建新的字串物件。"
+            },
+            {
+                question: "以下哪個是Python中的可變資料型別？",
+                options: ["str", "tuple", "list", "int"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "list是可變資料型別，可以修改其元素。str、tuple、int都是不可變的。"
+            },
+            {
+                question: "Python中如何建立空列表？",
+                options: ["list()", "[]", "兩者都可以", "empty_list()"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "可以使用[]或list()來建立空列表。"
+            },
+            {
+                question: "Python中如何建立空字典？",
+                options: ["dict()", "{}", "兩者都可以", "empty_dict()"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "可以使用{}或dict()來建立空字典。"
+            },
+            {
+                question: "Python中如何建立空集合？",
+                options: ["set()", "{}", "[]", "empty_set()"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "必須使用set()來建立空集合，{}會建立空字典。"
+            },
+            {
+                question: "Python中如何檢查變數是否為列表？",
+                options: ["type(var) == list", "isinstance(var, list)", "兩者都可以", "islist(var)"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "可以使用type()或isinstance()來檢查型別，isinstance()更推薦。"
+            },
+            {
+                question: "Python中字串的索引從幾開始？",
+                options: ["1", "0", "-1", "任意"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "Python中所有序列型別的索引都從0開始。"
+            },
+            {
+                question: "Python中如何獲取字串的長度？",
+                options: ["str.length()", "len(str)", "str.size()", "length(str)"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "len()函數用於獲取序列的長度。"
+            },
+            {
+                question: "Python中如何將字串轉為大寫？",
+                options: ["str.upper()", "str.uppercase()", "str.toUpper()", "upper(str)"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "upper()方法將字串轉為大寫。"
+            },
+            {
+                question: "Python中如何分割字串？",
+                options: ["str.split()", "str.divide()", "str.separate()", "split(str)"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "split()方法用於分割字串，返回列表。"
+            },
+            {
+                question: "Python中如何連接列表中的字串？",
+                options: ["join(list)", "str.join(list)", "list.join()", "connect(list)"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "使用字串的join()方法連接列表中的字串元素。"
+            },
+            {
+                question: "Python中如何在列表末尾添加元素？",
+                options: ["list.add()", "list.append()", "list.insert()", "list.push()"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "append()方法在列表末尾添加一個元素。"
+            },
+            {
+                question: "Python中如何在列表指定位置插入元素？",
+                options: ["list.add(index, item)", "list.insert(index, item)", "list.put(index, item)", "list.place(index, item)"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "insert()方法在指定位置插入元素。"
+            },
+            {
+                question: "Python中如何移除列表中的元素？",
+                options: ["list.delete()", "list.remove()", "list.pop()", "B和C都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "remove()移除指定值的元素，pop()移除指定索引的元素。"
+            },
+            {
+                question: "Python中如何複製列表？",
+                options: ["list.copy()", "list[:]", "list(original)", "以上都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "Python提供多種複製列表的方法。"
+            },
+            {
+                question: "Python中如何反轉列表？",
+                options: ["list.reverse()", "list[::-1]", "reversed(list)", "以上都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "reverse()就地反轉，[::-1]創建反轉副本，reversed()返回迭代器。"
+            },
+            {
+                question: "Python中如何排序列表？",
+                options: ["list.sort()", "sorted(list)", "兩者都可以", "list.order()"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "資料型別與結構",
+                explanation: "sort()就地排序，sorted()返回新的排序列表。"
+            },
+            {
+                question: "Python中如何檢查元素是否在列表中？",
+                options: ["item in list", "list.contains(item)", "list.has(item)", "exists(item, list)"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料型別與結構",
+                explanation: "使用in運算符檢查元素是否存在於序列中。"
+            },
+            {
                 question: "Python中哪些值被視為False？",
                 options: ["0, '', [], {}", "1, 'hello', [1]", "None, True", "只有False"],
                 correct: 0,
@@ -1276,6 +1612,158 @@ else:
                 topic: "控制結構",
                 explanation: "x=15，不滿足 x>20，但滿足 x>10，所以輸出 'B'。",
                 reference: "Python Crash Course 第2版 - 第5章：if語句"
+            },
+            {
+                question: "Python中的if語句語法是什麼？",
+                options: ["if condition then:", "if (condition):", "if condition:", "if condition do:"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "Python的if語句語法是 if condition: 後面跟冒號。"
+            },
+            {
+                question: "Python中的elif是什麼意思？",
+                options: ["else if", "end if", "exit if", "error if"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "elif是else if的縮寫，用於多重條件判斷。"
+            },
+            {
+                question: "Python中的for迴圈語法是什麼？",
+                options: ["for i in range:", "for (i in range):", "for i in range():", "for i = range():"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "Python的for迴圈語法是 for variable in iterable: "
+            },
+            {
+                question: "Python中的while迴圈語法是什麼？",
+                options: ["while condition do:", "while (condition):", "while condition:", "while condition then:"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "Python的while迴圈語法是 while condition: "
+            },
+            {
+                question: "range(5)會產生什麼？",
+                options: ["[1,2,3,4,5]", "[0,1,2,3,4]", "[0,1,2,3,4,5]", "[1,2,3,4]"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "range(5)產生從0到4的數字序列。"
+            },
+            {
+                question: "range(1, 6)會產生什麼？",
+                options: ["[1,2,3,4,5]", "[1,2,3,4,5,6]", "[0,1,2,3,4,5]", "[2,3,4,5,6]"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "range(1, 6)產生從1到5的數字序列。"
+            },
+            {
+                question: "range(0, 10, 2)會產生什麼？",
+                options: ["[0,2,4,6,8]", "[0,2,4,6,8,10]", "[2,4,6,8,10]", "[0,1,2,3,4]"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "range(0, 10, 2)產生從0開始，步長為2，到10之前的數字。"
+            },
+            {
+                question: "break語句的作用是什麼？",
+                options: ["跳過當前迭代", "終止迴圈", "暫停程式", "重新開始迴圈"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "break語句用於完全終止迴圈。"
+            },
+            {
+                question: "continue語句的作用是什麼？",
+                options: ["終止迴圈", "跳過當前迭代", "重新開始迴圈", "暫停程式"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "控制結構",
+                explanation: "continue語句跳過當前迭代，繼續下一次迭代。"
+            },
+            {
+                question: "Python中的三元運算符語法是什麼？",
+                options: ["condition ? true : false", "true if condition else false", "if condition true else false", "condition then true else false"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "Python的三元運算符語法是 value_if_true if condition else value_if_false"
+            },
+            {
+                question: "以下哪個是正確的巢狀迴圈？",
+                options: ["for i in range(3): for j in range(2): print(i,j)", "for i in range(3):\\n    for j in range(2):\\n        print(i,j)", "兩者都正確", "兩者都錯誤"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "巢狀迴圈需要正確的縮排。"
+            },
+            {
+                question: "for-else語句中的else何時執行？",
+                options: ["迴圈被break時", "迴圈正常結束時", "迴圈出錯時", "從不執行"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "控制結構",
+                explanation: "for-else中的else在迴圈正常結束（沒有被break）時執行。"
+            },
+            {
+                question: "while-else語句中的else何時執行？",
+                options: ["迴圈被break時", "迴圈正常結束時", "迴圈出錯時", "從不執行"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "控制結構",
+                explanation: "while-else中的else在迴圈條件變為False時執行。"
+            },
+            {
+                question: "Python中如何實現無限迴圈？",
+                options: ["while True:", "while 1:", "while forever:", "A和B都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "while True: 和 while 1: 都可以創建無限迴圈。"
+            },
+            {
+                question: "enumerate()函數的作用是什麼？",
+                options: ["計算元素數量", "同時獲取索引和值", "排序元素", "過濾元素"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "enumerate()函數返回索引和值的配對。"
+            },
+            {
+                question: "zip()函數的作用是什麼？",
+                options: ["壓縮檔案", "並行迭代多個序列", "解壓序列", "排序序列"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "zip()函數將多個序列並行組合。"
+            },
+            {
+                question: "Python中如何跳出多層迴圈？",
+                options: ["使用break", "使用標籤", "使用函數return", "使用異常"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "控制結構",
+                explanation: "Python沒有標籤，可以使用函數return或異常來跳出多層迴圈。"
+            },
+            {
+                question: "列表推導式的語法是什麼？",
+                options: ["[expression for item in iterable]", "[item for expression in iterable]", "[iterable for item in expression]", "[for item in iterable: expression]"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "列表推導式的基本語法是 [expression for item in iterable]"
+            },
+            {
+                question: "帶條件的列表推導式語法是什麼？",
+                options: ["[expr for item in iterable if condition]", "[expr if condition for item in iterable]", "[for item in iterable if condition: expr]", "[expr for item if condition in iterable]"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "控制結構",
+                explanation: "帶條件的列表推導式語法是 [expression for item in iterable if condition]"
             },
             {
                 question: "以下迴圈會執行幾次？",
@@ -1404,6 +1892,158 @@ else:
                 topic: "函數與模組",
                 explanation: "Python使用 'def' 關鍵字來定義函數。",
                 reference: "Python Crash Course 第2版 - 第8章：函數"
+            },
+            {
+                question: "Python函數如何返回值？",
+                options: ["return value", "give value", "send value", "output value"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "使用return語句返回值。"
+            },
+            {
+                question: "Python函數如果沒有return語句會返回什麼？",
+                options: ["0", "空字串", "None", "錯誤"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "沒有return語句的函數默認返回None。"
+            },
+            {
+                question: "Python函數的參數有哪些類型？",
+                options: ["位置參數", "關鍵字參數", "預設參數", "以上都是"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "Python支援多種參數類型。"
+            },
+            {
+                question: "Python中如何定義預設參數？",
+                options: ["def func(a=default):", "def func(a:default):", "def func(a->default):", "def func(default a):"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "使用等號設定預設值。"
+            },
+            {
+                question: "Python中的*args用於什麼？",
+                options: ["接收關鍵字參數", "接收可變位置參數", "接收預設參數", "接收型別參數"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "*args接收可變數量的位置參數。"
+            },
+            {
+                question: "Python中的**kwargs用於什麼？",
+                options: ["接收位置參數", "接收關鍵字參數", "接收預設參數", "接收型別參數"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "**kwargs接收可變數量的關鍵字參數。"
+            },
+            {
+                question: "Python中的lambda是什麼？",
+                options: ["匿名函數", "類別", "模組", "變數"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "lambda用於創建匿名函數。"
+            },
+            {
+                question: "lambda函數的語法是什麼？",
+                options: ["lambda args: expression", "lambda(args): expression", "lambda args -> expression", "lambda: args expression"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "lambda的語法是 lambda 參數: 表達式"
+            },
+            {
+                question: "Python中如何導入整個模組？",
+                options: ["import module", "from module import *", "include module", "use module"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "使用import語句導入模組。"
+            },
+            {
+                question: "Python中如何導入模組中的特定函數？",
+                options: ["import module.function", "from module import function", "include module.function", "use module.function"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "使用from...import語句導入特定函數。"
+            },
+            {
+                question: "Python中如何給導入的模組取別名？",
+                options: ["import module as alias", "import module -> alias", "import module = alias", "import alias from module"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "使用as關鍵字給模組取別名。"
+            },
+            {
+                question: "Python中的__name__變數用於什麼？",
+                options: ["獲取函數名", "獲取模組名", "檢查是否為主程式", "獲取變數名"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "__name__用於檢查模組是否為主程式執行。"
+            },
+            {
+                question: "if __name__ == '__main__': 的作用是什麼？",
+                options: ["定義主函數", "檢查是否直接執行", "導入模組", "定義類別"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "檢查腳本是否被直接執行。"
+            },
+            {
+                question: "Python中的裝飾器用什麼符號？",
+                options: ["@", "#", "&", "%"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "裝飾器使用@符號。"
+            },
+            {
+                question: "Python中如何定義生成器函數？",
+                options: ["使用yield", "使用generate", "使用return", "使用create"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "函數與模組",
+                explanation: "使用yield關鍵字定義生成器函數。"
+            },
+            {
+                question: "Python中的閉包是什麼？",
+                options: ["函數內部的函數", "可以存取外部變數的內部函數", "匿名函數", "遞迴函數"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "函數與模組",
+                explanation: "閉包是可以存取外部作用域變數的內部函數。"
+            },
+            {
+                question: "Python中如何檢查函數的參數？",
+                options: ["inspect.signature()", "function.args", "func.params", "get_args()"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "函數與模組",
+                explanation: "使用inspect模組的signature()函數。"
+            },
+            {
+                question: "Python中的遞迴函數需要什麼？",
+                options: ["基礎情況", "遞迴調用", "兩者都需要", "都不需要"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "函數與模組",
+                explanation: "遞迴函數需要基礎情況和遞迴調用。"
+            },
+            {
+                question: "Python中如何創建模組？",
+                options: ["創建.py檔案", "使用module關鍵字", "使用create_module()", "使用def module():"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "函數與模組",
+                explanation: "創建.py檔案就是創建模組。"
             },
             {
                 question: "以下函數會返回什麼值？",
@@ -1541,6 +2181,158 @@ print(result)`,
                 topic: "物件導向程式設計",
                 explanation: "Python使用 'class' 關鍵字來定義類別。",
                 reference: "Python Crash Course 第2版 - 第9章：類別"
+            },
+            {
+                question: "Python中的__init__方法是什麼？",
+                options: ["初始化方法", "建構子", "建構函數", "以上都是"],
+                correct: 3,
+                difficulty: "easy",
+                topic: "物件導向程式設計",
+                explanation: "__init__是類別的初始化方法，也稱為建構子。"
+            },
+            {
+                question: "Python中的self參數代表什麼？",
+                options: ["類別本身", "物件實例", "父類別", "方法"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "物件導向程式設計",
+                explanation: "self參數代表物件實例本身。"
+            },
+            {
+                question: "Python中如何創建物件實例？",
+                options: ["new ClassName()", "ClassName.new()", "ClassName()", "create ClassName()"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "物件導向程式設計",
+                explanation: "直接調用類別名稱來創建實例。"
+            },
+            {
+                question: "Python中的繼承語法是什麼？",
+                options: ["class Child extends Parent:", "class Child(Parent):", "class Child inherits Parent:", "class Child -> Parent:"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "物件導向程式設計",
+                explanation: "使用括號語法表示繼承關係。"
+            },
+            {
+                question: "Python中的super()函數用於什麼？",
+                options: ["調用父類別方法", "創建超級類別", "檢查繼承關係", "刪除類別"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "super()用於調用父類別的方法。"
+            },
+            {
+                question: "Python中如何定義私有屬性？",
+                options: ["使用private關鍵字", "使用單底線_", "使用雙底線__", "使用#符號"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "使用雙底線__定義私有屬性。"
+            },
+            {
+                question: "Python中的類別變數和實例變數有什麼區別？",
+                options: ["沒有區別", "類別變數共享，實例變數獨有", "實例變數共享，類別變數獨有", "都是共享的"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "類別變數被所有實例共享，實例變數屬於特定實例。"
+            },
+            {
+                question: "Python中的@property裝飾器用於什麼？",
+                options: ["定義屬性", "創建getter方法", "創建setter方法", "以上都可以"],
+                correct: 3,
+                difficulty: "hard",
+                topic: "物件導向程式設計",
+                explanation: "@property用於創建屬性的getter、setter方法。"
+            },
+            {
+                question: "Python中的@staticmethod裝飾器用於什麼？",
+                options: ["定義靜態方法", "定義類別方法", "定義實例方法", "定義私有方法"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "@staticmethod定義不需要self或cls的靜態方法。"
+            },
+            {
+                question: "Python中的@classmethod裝飾器用於什麼？",
+                options: ["定義靜態方法", "定義類別方法", "定義實例方法", "定義私有方法"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "@classmethod定義接收cls參數的類別方法。"
+            },
+            {
+                question: "Python中如何實現多重繼承？",
+                options: ["class Child(Parent1, Parent2):", "class Child extends Parent1, Parent2:", "class Child inherits Parent1, Parent2:", "不支援多重繼承"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "Python支援多重繼承，使用逗號分隔多個父類別。"
+            },
+            {
+                question: "Python中的MRO是什麼？",
+                options: ["Method Resolution Order", "Multiple Return Object", "Module Reference Order", "Memory Resource Optimization"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "物件導向程式設計",
+                explanation: "MRO是方法解析順序，決定多重繼承中方法的調用順序。"
+            },
+            {
+                question: "Python中如何檢查物件的類型？",
+                options: ["type(obj)", "isinstance(obj, class)", "兩者都可以", "obj.__class__"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "可以使用type()或isinstance()檢查物件類型。"
+            },
+            {
+                question: "Python中的__str__方法用於什麼？",
+                options: ["字串轉換", "物件比較", "物件複製", "物件刪除"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "__str__方法定義物件的字串表示。"
+            },
+            {
+                question: "Python中的__repr__方法用於什麼？",
+                options: ["開發者友好的字串表示", "用戶友好的字串表示", "物件複製", "物件比較"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "__repr__提供開發者友好的物件表示。"
+            },
+            {
+                question: "Python中的__len__方法用於什麼？",
+                options: ["定義物件長度", "定義物件大小", "定義物件重量", "定義物件數量"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "__len__方法定義len()函數的行為。"
+            },
+            {
+                question: "Python中的__eq__方法用於什麼？",
+                options: ["定義相等比較", "定義大小比較", "定義物件複製", "定義物件刪除"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "__eq__方法定義==運算符的行為。"
+            },
+            {
+                question: "Python中的__add__方法用於什麼？",
+                options: ["定義加法運算", "定義減法運算", "定義乘法運算", "定義除法運算"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "物件導向程式設計",
+                explanation: "__add__方法定義+運算符的行為。"
+            },
+            {
+                question: "Python中的抽象類別如何定義？",
+                options: ["使用abc模組", "使用abstract關鍵字", "使用virtual關鍵字", "不支援抽象類別"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "物件導向程式設計",
+                explanation: "使用abc模組定義抽象類別和抽象方法。"
             },
             {
                 question: "以下程式碼會輸出什麼？",
@@ -1710,6 +2502,158 @@ c.method()`,
                 reference: "Python Crash Course 第2版 - 第10章：檔案和異常"
             },
             {
+                question: "Python中的檔案開啟模式有哪些？",
+                options: ["r, w, a", "r, w, a, x", "r, w, a, x, b, t", "以上都包含"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "Python支援多種檔案開啟模式，包括讀寫模式和二進制/文字模式。"
+            },
+            {
+                question: "Python中的'rb'模式表示什麼？",
+                options: ["讀取文字", "讀取二進制", "寫入文字", "寫入二進制"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "檔案處理與異常處理",
+                explanation: "'rb'表示以二進制模式讀取檔案。"
+            },
+            {
+                question: "Python中如何讀取整個檔案內容？",
+                options: ["file.read()", "file.readall()", "file.content()", "file.get()"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "檔案處理與異常處理",
+                explanation: "read()方法讀取整個檔案內容。"
+            },
+            {
+                question: "Python中如何逐行讀取檔案？",
+                options: ["file.readline()", "file.readlines()", "for line in file:", "以上都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "Python提供多種逐行讀取檔案的方法。"
+            },
+            {
+                question: "Python中的with語句有什麼優點？",
+                options: ["自動關閉檔案", "異常安全", "程式碼簡潔", "以上都是"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "with語句提供自動資源管理，確保檔案正確關閉。"
+            },
+            {
+                question: "Python中如何寫入檔案？",
+                options: ["file.write()", "file.append()", "file.put()", "file.insert()"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "檔案處理與異常處理",
+                explanation: "write()方法用於寫入檔案。"
+            },
+            {
+                question: "Python中的try-except語句用於什麼？",
+                options: ["測試程式碼", "捕獲異常", "除錯程式", "優化效能"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "檔案處理與異常處理",
+                explanation: "try-except用於捕獲和處理異常。"
+            },
+            {
+                question: "Python中的finally語句何時執行？",
+                options: ["只在沒有異常時", "只在有異常時", "總是執行", "從不執行"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "finally語句無論是否有異常都會執行。"
+            },
+            {
+                question: "Python中如何拋出自定義異常？",
+                options: ["throw Exception", "raise Exception", "error Exception", "exception Exception"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "使用raise語句拋出異常。"
+            },
+            {
+                question: "Python中的FileNotFoundError是什麼類型的異常？",
+                options: ["語法錯誤", "運行時錯誤", "邏輯錯誤", "系統錯誤"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "檔案處理與異常處理",
+                explanation: "FileNotFoundError是運行時異常。"
+            },
+            {
+                question: "Python中如何處理多種異常？",
+                options: ["多個except語句", "except (Exception1, Exception2):", "兩者都可以", "不能處理多種異常"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "可以使用多個except語句或元組形式處理多種異常。"
+            },
+            {
+                question: "Python中的else語句在try-except中何時執行？",
+                options: ["有異常時", "沒有異常時", "總是執行", "從不執行"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "else語句在沒有異常時執行。"
+            },
+            {
+                question: "Python中如何創建自定義異常類別？",
+                options: ["繼承Exception", "繼承Error", "繼承BaseException", "繼承RuntimeError"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "自定義異常應該繼承Exception類別。"
+            },
+            {
+                question: "Python中的assert語句用於什麼？",
+                options: ["拋出異常", "除錯斷言", "測試條件", "以上都是"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "assert用於除錯時的條件檢查。"
+            },
+            {
+                question: "Python中如何檢查檔案是否存在？",
+                options: ["os.path.exists()", "file.exists()", "path.exists()", "check_file()"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "使用os.path.exists()檢查檔案是否存在。"
+            },
+            {
+                question: "Python中如何獲取檔案大小？",
+                options: ["os.path.getsize()", "file.size()", "len(file)", "file.length()"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "使用os.path.getsize()獲取檔案大小。"
+            },
+            {
+                question: "Python中如何刪除檔案？",
+                options: ["os.remove()", "os.delete()", "file.delete()", "del file"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "使用os.remove()刪除檔案。"
+            },
+            {
+                question: "Python中如何重新命名檔案？",
+                options: ["os.rename()", "file.rename()", "os.move()", "file.move()"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "檔案處理與異常處理",
+                explanation: "使用os.rename()重新命名檔案。"
+            },
+            {
+                question: "Python中的JSON模組用於什麼？",
+                options: ["處理JSON資料", "網路通訊", "檔案壓縮", "資料加密"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "檔案處理與異常處理",
+                explanation: "json模組用於處理JSON格式的資料。"
+            },
+            {
                 question: "try-except語句的作用是什麼？",
                 options: ["執行迴圈", "定義函數", "處理異常", "建立類別"],
                 correct: 2,
@@ -1870,6 +2814,158 @@ print(result)`,
                 topic: "資料結構與演算法",
                 explanation: "列表是可變的資料結構，可以修改元素；元組是不可變的。",
                 reference: "Python Crash Course 第2版 - 第4章：列表vs元組"
+            },
+            {
+                question: "Python中的堆疊(Stack)遵循什麼原則？",
+                options: ["FIFO", "LIFO", "FILO", "LILO"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料結構與演算法",
+                explanation: "堆疊遵循LIFO(Last In, First Out)原則。"
+            },
+            {
+                question: "Python中的佇列(Queue)遵循什麼原則？",
+                options: ["FIFO", "LIFO", "FILO", "LILO"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料結構與演算法",
+                explanation: "佇列遵循FIFO(First In, First Out)原則。"
+            },
+            {
+                question: "Python中如何實現堆疊？",
+                options: ["使用列表", "使用deque", "使用queue.LifoQueue", "以上都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "Python提供多種實現堆疊的方法。"
+            },
+            {
+                question: "Python中如何實現佇列？",
+                options: ["使用列表", "使用deque", "使用queue.Queue", "B和C都可以"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "deque和queue.Queue都適合實現佇列。"
+            },
+            {
+                question: "Python中的collections.deque有什麼優勢？",
+                options: ["兩端操作都是O(1)", "記憶體效率高", "線程安全", "A和B都是"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "deque在兩端操作都是O(1)時間複雜度，且記憶體效率高。"
+            },
+            {
+                question: "Python中的heapq模組實現什麼資料結構？",
+                options: ["堆疊", "佇列", "堆積", "樹"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "heapq模組實現最小堆積資料結構。"
+            },
+            {
+                question: "Python中的二分搜尋模組是什麼？",
+                options: ["binary", "bisect", "search", "find"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "bisect模組提供二分搜尋功能。"
+            },
+            {
+                question: "Python中的collections.Counter用於什麼？",
+                options: ["計數器", "計時器", "計算器", "計量器"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料結構與演算法",
+                explanation: "Counter是計數器，用於統計可雜湊物件。"
+            },
+            {
+                question: "Python中的collections.defaultdict有什麼特點？",
+                options: ["提供預設值", "自動排序", "線程安全", "記憶體優化"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "defaultdict為不存在的鍵提供預設值。"
+            },
+            {
+                question: "Python中的collections.OrderedDict有什麼特點？",
+                options: ["保持插入順序", "自動排序", "快速查找", "節省記憶體"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "OrderedDict保持鍵的插入順序。"
+            },
+            {
+                question: "Python中的collections.namedtuple用於什麼？",
+                options: ["創建命名元組", "創建命名列表", "創建命名字典", "創建命名集合"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "namedtuple創建具有命名欄位的元組子類。"
+            },
+            {
+                question: "Python中的時間複雜度O(1)表示什麼？",
+                options: ["線性時間", "常數時間", "對數時間", "平方時間"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "資料結構與演算法",
+                explanation: "O(1)表示常數時間複雜度。"
+            },
+            {
+                question: "Python中的時間複雜度O(n)表示什麼？",
+                options: ["線性時間", "常數時間", "對數時間", "平方時間"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "資料結構與演算法",
+                explanation: "O(n)表示線性時間複雜度。"
+            },
+            {
+                question: "Python中的時間複雜度O(log n)表示什麼？",
+                options: ["線性時間", "常數時間", "對數時間", "平方時間"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "資料結構與演算法",
+                explanation: "O(log n)表示對數時間複雜度。"
+            },
+            {
+                question: "Python中的泡沫排序時間複雜度是多少？",
+                options: ["O(n)", "O(n log n)", "O(n²)", "O(1)"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "泡沫排序的時間複雜度是O(n²)。"
+            },
+            {
+                question: "Python中的快速排序平均時間複雜度是多少？",
+                options: ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "快速排序的平均時間複雜度是O(n log n)。"
+            },
+            {
+                question: "Python中的合併排序時間複雜度是多少？",
+                options: ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "合併排序的時間複雜度始終是O(n log n)。"
+            },
+            {
+                question: "Python中的二分搜尋時間複雜度是多少？",
+                options: ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "二分搜尋的時間複雜度是O(log n)。"
+            },
+            {
+                question: "Python中的雜湊表(字典)查找時間複雜度是多少？",
+                options: ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "資料結構與演算法",
+                explanation: "雜湊表的平均查找時間複雜度是O(1)。"
             },
             {
                 question: "以下哪個方法可以將兩個列表合併？",
@@ -2377,5 +3473,5 @@ print(stack.pop())`,
             document.getElementById('username').focus();
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ef54e237df4a21',t:'MTc1NTE2Mjc1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ef5f95e6df4a8d',t:'MTc1NTE2MzE5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
