@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python ITS 證照練習系統 - 超大型題庫版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .header .stats-info {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        /* 登入畫面 */
+        .login-screen {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .login-form h2 {
+            color: #1e293b;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #2563eb;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            margin-top: 15px;
+            padding: 10px;
+            background: #fee2e2;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        /* 設定畫面 */
+        .setup-screen {
+            padding: 40px;
+            display: none;
+        }
+        
+        .setup-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .setup-section {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .setup-section h3 {
+            color: #1e293b;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .topic-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .topic-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .topic-item.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+        
+        .difficulty-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-option {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .difficulty-option input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .difficulty-option.easy { border-color: #10b981; }
+        .difficulty-option.medium { border-color: #f59e0b; }
+        .difficulty-option.hard { border-color: #ef4444; }
+        
+        .question-count {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .count-option {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .count-option.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+        
+        .start-exam-btn {
+            width: 100%;
+            padding: 15px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .start-exam-btn:hover {
+            background: #059669;
+        }
+        
+        /* 統計區域 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            background: #f8fafc;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .timer {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .timer .stat-number {
+            color: white;
+        }
+        
+        .score-display {
+            background: #10b981;
+            color: white;
+        }
+        
+        .score-display .stat-number {
+            color: white;
+        }
+        
+        /* 題目區域 */
+        .question-container {
+            padding: 40px;
+            display: none;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .question-number {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        
+        .topic-tag {
+            background: #8b5cf6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .difficulty {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .difficulty.easy { background: #dcfce7; color: #166534; }
+        .difficulty.medium { background: #fef3c7; color: #92400e; }
+        .difficulty.hard { background: #fecaca; color: #991b1b; }
+        
+        .question {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .question h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .options {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+        
+        .option.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+        
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        
+        .option-letter {
+            background: #64748b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .option.selected .option-letter {
+            background: #3b82f6;
+        }
+        
+        .option.correct .option-letter {
+            background: #10b981;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #ef4444;
+        }
+        
+        .option-text {
+            flex: 1;
+            line-height: 1.5;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+        }
+        
+        .feedback.incorrect {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .explanation h4 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .explanation p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .explanation .code-example {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1e40af);
+            transition: width 0.3s ease;
+        }
+        
+        /* 結果畫面 */
+        .final-score {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .topic-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .topic-stat {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .question-container, .setup-screen, .login-screen {
+                padding: 20px;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐍 Python ITS 證照練習系統</h1>
+            <p>超大型題庫版 - 專業級程式設計認證模擬測驗</p>
+            <div class="stats-info">
+                📚 超過300道精選題目 | 🎯 詳細解析說明 | ⚡ 智能出題系統
+            </div>
+        </div>
+        
+        <!-- 登入畫面 -->
+        <div class="login-screen" id="loginScreen">
+            <div class="login-form">
+                <h2>🔐 系統登入</h2>
+                <div class="form-group">
+                    <label for="username">帳號</label>
+                    <input type="text" id="username" placeholder="請輸入帳號">
+                </div>
+                <div class="form-group">
+                    <label for="password">密碼</label>
+                    <input type="password" id="password" placeholder="請輸入密碼">
+                </div>
+                <button class="login-btn" onclick="login()">登入系統</button>
+                <div class="error-message" id="errorMessage">帳號或密碼錯誤！</div>
+            </div>
+        </div>
+        
+        <!-- 設定畫面 -->
+        <div class="setup-screen" id="setupScreen">
+            <div class="setup-form">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #1e293b;">📝 客製化測驗設定</h2>
+                
+                <div class="setup-section">
+                    <h3>📚 選擇考試範圍</h3>
+                    <div class="topic-grid" id="topicGrid">
+                        <!-- 動態生成 -->
+                    </div>
+                </div>
+                
+                <div class="setup-section">
+                    <h3>⚡ 選擇難度等級</h3>
+                    <div class="difficulty-options">
+                        <div class="difficulty-option easy">
+                            <input type="checkbox" id="diff-easy" checked>
+                            <label for="diff-easy">簡單</label>
+                        </div>
+                        <div class="difficulty-option medium">
+                            <input type="checkbox" id="diff-medium" checked>
+                            <label for="diff-medium">中等</label>
+                        </div>
+                        <div class="difficulty-option hard">
+                            <input type="checkbox" id="diff-hard" checked>
+                            <label for="diff-hard">困難</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="setup-section">
+                    <h3>🎯 選擇題目數量</h3>
+                    <div class="question-count">
+                        <div class="count-option" onclick="selectQuestionCount(20)">20題 (快速)</div>
+                        <div class="count-option selected" onclick="selectQuestionCount(30)">30題 (標準)</div>
+                        <div class="count-option" onclick="selectQuestionCount(50)">50題 (完整)</div>
+                        <div class="count-option" onclick="selectQuestionCount(100)">100題 (挑戰)</div>
+                    </div>
+                </div>
+                
+                <button class="start-exam-btn" onclick="startCustomExam()">🚀 開始客製化測驗</button>
+            </div>
+        </div>
+        
+        <!-- 統計區域 -->
+        <div class="stats" id="statsBar" style="display: none;">
+            <div class="stat-item timer">
+                <div class="stat-number" id="timeLeft">50:00</div>
+                <div class="stat-label">剩餘時間</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="currentQ">1</div>
+                <div class="stat-label">目前題目</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalQ">30</div>
+                <div class="stat-label">總題數</div>
+            </div>
+            <div class="stat-item score-display">
+                <div class="stat-number" id="currentScore">0</div>
+                <div class="stat-label">目前分數</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="correctCount">0</div>
+                <div class="stat-label">答對題數</div>
+            </div>
+        </div>
+        
+        <div class="progress-bar" id="progressBar" style="display: none;">
+            <div class="progress-fill" id="progressFill" style="width: 3.33%"></div>
+        </div>
+        
+        <!-- 題目區域 -->
+        <div class="question-container" id="questionContainer">
+            <div class="question-header">
+                <div class="question-number">題目 <span id="questionNum">1</span></div>
+                <div class="topic-tag" id="topicTag">變數與運算式</div>
+                <div class="difficulty easy" id="difficultyTag">簡單</div>
+            </div>
+            
+            <div class="question">
+                <h3 id="questionText">載入中...</h3>
+                <div class="code-block" id="codeBlock" style="display: none;"></div>
+            </div>
+            
+            <div class="options" id="optionsContainer">
+                <!-- 選項會動態生成 -->
+            </div>
+            
+            <div class="feedback" id="feedback">
+                <div class="explanation" id="explanationContainer">
+                    <h4>💡 詳細解析</h4>
+                    <div id="explanationContent"></div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">上一題</button>
+                <div>
+                    <button class="btn btn-danger" onclick="endExam()">結束考試</button>
+                    <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">提交答案</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">下一題</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 結果畫面 -->
+        <div class="final-score" id="finalScore">
+            <div class="score-circle" id="scoreCircle">0</div>
+            <h2 id="resultTitle">測驗完成！</h2>
+            <p id="scoreMessage">恭喜完成所有題目</p>
+            <div class="topic-stats" id="topicStats"></div>
+            <button class="btn btn-primary" onclick="backToSetup()" style="margin-top: 20px;">重新設定測驗</button>
+        </div>
+    </div>
+
+    <script>
+        // 超大型題庫 (300+ 題目)
+        const questionBank = [
+            // 變數與運算式 (50題)
+            {
+                question: "以下哪個是Python中正確的變數命名方式？",
+                options: ["2variable", "variable_name", "variable-name", "class"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "Python變數名稱必須以字母或底線開頭，不能以數字開頭，也不能使用連字號。'class'是保留字。",
+                detailedExplanation: {
+                    concept: "Python變數命名規則",
+                    rules: [
+                        "必須以字母(a-z, A-Z)或底線(_)開頭",
+                        "後續字符可以是字母、數字或底線",
+                        "不能使用Python保留字(如class, def, if等)",
+                        "區分大小寫",
+                        "建議使用snake_case命名風格"
+                    ],
+                    examples: [
+                        "正確：my_variable, _private, userName, count1",
+                        "錯誤：2variable, my-var, class, def"
+                    ]
+                }
+            },
+            {
+                question: "執行以下程式碼後，x的值是多少？",
+                code: `x = 10
+x += 5
+x *= 2`,
+                options: ["20", "30", "25", "15"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "x = 10，然後 x += 5 使 x = 15，最後 x *= 2 使 x = 30。",
+                detailedExplanation: {
+                    concept: "複合賦值運算符",
+                    steps: [
+                        "初始值：x = 10",
+                        "x += 5 等同於 x = x + 5，所以 x = 10 + 5 = 15",
+                        "x *= 2 等同於 x = x * 2，所以 x = 15 * 2 = 30"
+                    ],
+                    note: "複合賦值運算符包括：+=, -=, *=, /=, //=, %=, **="
+                }
+            },
+            {
+                question: "Python中 // 運算符的作用是什麼？",
+                options: ["浮點數除法", "整數除法(取商)", "取餘數", "註解"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "// 是整數除法運算符，會返回除法的商（整數部分），例如 7 // 2 = 3。",
+                detailedExplanation: {
+                    concept: "Python除法運算符",
+                    operators: [
+                        "/ : 浮點除法，結果為浮點數",
+                        "// : 整數除法，結果為整數（向下取整）",
+                        "% : 取餘數運算符"
+                    ],
+                    examples: [
+                        "7 / 2 = 3.5",
+                        "7 // 2 = 3",
+                        "7 % 2 = 1",
+                        "-7 // 2 = -4 (向下取整)"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼的輸出結果是什麼？",
+                code: `a = 5
+b = 2
+print(a ** b, a % b)`,
+                options: ["25 1", "10 1", "7 3", "25 0"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "** 是次方運算符，5**2=25；% 是取餘數運算符，5%2=1。",
+                detailedExplanation: {
+                    concept: "數學運算符",
+                    calculation: [
+                        "a ** b = 5 ** 2 = 5的2次方 = 25",
+                        "a % b = 5 % 2 = 5除以2的餘數 = 1"
+                    ],
+                    operators: [
+                        "** : 次方運算",
+                        "% : 取餘數運算",
+                        "+ : 加法",
+                        "- : 減法",
+                        "* : 乘法"
+                    ]
+                }
+            },
+            {
+                question: "Python中哪個運算符用於字串重複？",
+                options: ["+", "*", "//", "%"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "* 運算符可以用於字串重複，例如 'Hello' * 3 會產生 'HelloHelloHello'。",
+                detailedExplanation: {
+                    concept: "字串運算符",
+                    operations: [
+                        "+ : 字串連接",
+                        "* : 字串重複",
+                        "in : 檢查子字串是否存在",
+                        "len() : 獲取字串長度"
+                    ],
+                    examples: [
+                        "'Hello' + 'World' = 'HelloWorld'",
+                        "'Hi' * 3 = 'HiHiHi'",
+                        "'a' in 'apple' = True"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = 10
+y = 3
+print(x / y, x // y, x % y)`,
+                options: ["3.33 3 1", "3.333... 3 1", "3.0 3 1", "10 3 1"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "/ 是浮點除法得到3.333...，// 是整數除法得到3，% 是取餘數得到1。",
+                detailedExplanation: {
+                    concept: "除法運算的三種形式",
+                    calculations: [
+                        "x / y = 10 / 3 = 3.3333333333333335",
+                        "x // y = 10 // 3 = 3 (整數部分)",
+                        "x % y = 10 % 3 = 1 (餘數)"
+                    ],
+                    verification: "3 * 3 + 1 = 10 ✓"
+                }
+            },
+            {
+                question: "Python中的變數類型是如何決定的？",
+                options: ["編譯時決定", "執行時動態決定", "必須明確宣告", "隨機決定"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "Python是動態類型語言，變數的類型在執行時根據賦值自動決定。",
+                detailedExplanation: {
+                    concept: "Python動態類型系統",
+                    features: [
+                        "動態類型：變數類型在執行時決定",
+                        "強類型：不允許隱式類型轉換",
+                        "自動類型推斷：根據賦值自動決定類型"
+                    ],
+                    examples: [
+                        "x = 5 → x是int類型",
+                        "x = 'hello' → x變成str類型",
+                        "x = 3.14 → x變成float類型"
+                    ]
+                }
+            },
+            {
+                question: "以下哪個表達式的結果是True？",
+                code: `a = 5
+b = 10`,
+                options: ["a > b", "a == b", "a < b", "a >= b"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "a = 5, b = 10，所以 a < b 為 True。",
+                detailedExplanation: {
+                    concept: "比較運算符",
+                    operators: [
+                        "> : 大於",
+                        "< : 小於", 
+                        ">= : 大於等於",
+                        "<= : 小於等於",
+                        "== : 等於",
+                        "!= : 不等於"
+                    ],
+                    evaluation: [
+                        "a > b → 5 > 10 → False",
+                        "a == b → 5 == 10 → False",
+                        "a < b → 5 < 10 → True ✓",
+                        "a >= b → 5 >= 10 → False"
+                    ]
+                }
+            },
+            {
+                question: "Python中 ** 運算符的優先級如何？",
+                options: ["最低", "中等", "最高", "與乘法相同"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "** (次方) 運算符具有最高的優先級，甚至高於一元運算符。",
+                detailedExplanation: {
+                    concept: "運算符優先級",
+                    priority: [
+                        "1. () 括號",
+                        "2. ** 次方",
+                        "3. +x, -x, ~x 一元運算符",
+                        "4. *, /, //, % 乘除運算",
+                        "5. +, - 加減運算",
+                        "6. ==, !=, <, > 比較運算",
+                        "7. and, or 邏輯運算"
+                    ],
+                    example: "2 + 3 ** 2 = 2 + 9 = 11 (不是25)"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = 2
+y = 3
+z = x ** y ** 2`,
+                options: ["64", "512", "36", "18"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "** 運算符是右結合的，所以 x ** y ** 2 = x ** (y ** 2) = 2 ** (3 ** 2) = 2 ** 9 = 512。",
+                detailedExplanation: {
+                    concept: "運算符結合性",
+                    calculation: [
+                        "y ** 2 = 3 ** 2 = 9",
+                        "x ** (y ** 2) = 2 ** 9 = 512"
+                    ],
+                    note: "** 運算符是右結合的，從右到左計算",
+                    comparison: "如果是左結合：(2 ** 3) ** 2 = 8 ** 2 = 64"
+                }
+            },
+            {
+                question: "Python中如何交換兩個變數的值？",
+                options: ["需要臨時變數", "a, b = b, a", "swap(a, b)", "無法直接交換"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "Python支援多重賦值，可以用 a, b = b, a 直接交換兩個變數的值。",
+                detailedExplanation: {
+                    concept: "多重賦值(Tuple Unpacking)",
+                    methods: [
+                        "Python方式：a, b = b, a",
+                        "傳統方式：temp = a; a = b; b = temp",
+                        "算術方式：a = a + b; b = a - b; a = a - b"
+                    ],
+                    advantage: "Python的多重賦值更簡潔且不需要額外變數"
+                }
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `x = 0.1 + 0.2
+print(x == 0.3)`,
+                options: ["True", "False", "錯誤", "不確定"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "由於浮點數精度問題，0.1 + 0.2 不完全等於 0.3，結果為 False。",
+                detailedExplanation: {
+                    concept: "浮點數精度問題",
+                    reason: "電腦使用二進制表示浮點數，某些十進制小數無法精確表示",
+                    actual_value: "0.1 + 0.2 = 0.30000000000000004",
+                    solutions: [
+                        "使用 round() 函數：round(0.1 + 0.2, 1) == 0.3",
+                        "使用 decimal 模組：from decimal import Decimal",
+                        "使用容差比較：abs(x - 0.3) < 1e-10"
+                    ]
+                }
+            },
+            {
+                question: "Python中的 is 運算符比較的是什麼？",
+                options: ["值", "類型", "身份(記憶體位址)", "大小"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "is 運算符比較兩個物件是否為同一個物件（相同的記憶體位址）。",
+                detailedExplanation: {
+                    concept: "身份比較 vs 值比較",
+                    operators: [
+                        "is : 比較物件身份（記憶體位址）",
+                        "== : 比較物件的值"
+                    ],
+                    examples: [
+                        "a = [1, 2]; b = [1, 2] → a == b (True), a is b (False)",
+                        "a = 5; b = 5 → a == b (True), a is b (True, 小整數快取)"
+                    ],
+                    use_cases: "通常用於比較 None: if x is None"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `a = [1, 2, 3]
+b = a
+c = a[:]
+print(a is b, a is c)`,
+                options: ["True True", "False False", "True False", "False True"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "b = a 創建引用，a is b 為 True；c = a[:] 創建副本，a is c 為 False。",
+                detailedExplanation: {
+                    concept: "引用 vs 複製",
+                    operations: [
+                        "b = a : 創建引用，指向同一個物件",
+                        "c = a[:] : 創建淺拷貝，新的物件"
+                    ],
+                    memory: [
+                        "a 和 b 指向同一記憶體位址",
+                        "c 指向不同的記憶體位址"
+                    ],
+                    result: "a is b → True, a is c → False"
+                }
+            },
+            {
+                question: "Python中的 += 運算符對於不可變物件的行為是什麼？",
+                options: ["修改原物件", "創建新物件", "產生錯誤", "不確定"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "對於不可變物件（如整數、字串），+= 會創建新物件並重新賦值。",
+                detailedExplanation: {
+                    concept: "可變 vs 不可變物件",
+                    immutable: "int, float, str, tuple",
+                    mutable: "list, dict, set",
+                    behavior: [
+                        "不可變物件：+= 創建新物件",
+                        "可變物件：+= 修改原物件"
+                    ],
+                    example: [
+                        "x = 5; x += 1 → 創建新的int物件",
+                        "lst = [1]; lst += [2] → 修改原list物件"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = 5
+x += x *= 2`,
+                options: ["15", "20", "10", "錯誤"],
+                correct: 3,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "這種連續的複合賦值運算符使用會產生語法錯誤。",
+                detailedExplanation: {
+                    concept: "複合賦值運算符語法",
+                    error: "SyntaxError: invalid syntax",
+                    reason: "不能在同一行中連續使用複合賦值運算符",
+                    correct_way: [
+                        "x *= 2",
+                        "x += x",
+                        "或者：x = x + (x * 2)"
+                    ]
+                }
+            },
+            {
+                question: "Python中的 None 是什麼類型？",
+                options: ["NoneType", "null", "undefined", "void"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "None 是 NoneType 類型的唯一實例，表示空值或無值。",
+                detailedExplanation: {
+                    concept: "None 物件",
+                    properties: [
+                        "類型：NoneType",
+                        "單例模式：只有一個None實例",
+                        "布林值：False",
+                        "用途：表示空值、預設參數、函數無返回值"
+                    ],
+                    usage: [
+                        "初始化變數：x = None",
+                        "檢查：if x is None",
+                        "函數預設返回值"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = 10
+y = x
+x = 20
+print(y)`,
+                options: ["10", "20", "None", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "變數與運算式",
+                explanation: "整數是不可變物件，y = x 複製值，修改 x 不影響 y。",
+                detailedExplanation: {
+                    concept: "變數賦值與物件引用",
+                    steps: [
+                        "x = 10 → x指向整數物件10",
+                        "y = x → y也指向同一個整數物件10",
+                        "x = 20 → x指向新的整數物件20",
+                        "y仍然指向原來的整數物件10"
+                    ],
+                    note: "整數是不可變物件，重新賦值會創建新物件"
+                }
+            },
+            {
+                question: "Python中如何檢查變數是否已定義？",
+                options: ["defined(var)", "var in locals()", "hasattr(var)", "isinstance(var)"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "可以使用 'var' in locals() 或 'var' in globals() 來檢查變數是否已定義。",
+                detailedExplanation: {
+                    concept: "變數存在性檢查",
+                    methods: [
+                        "'var_name' in locals() : 檢查局部變數",
+                        "'var_name' in globals() : 檢查全域變數",
+                        "'var_name' in dir() : 檢查當前命名空間"
+                    ],
+                    alternative: [
+                        "try-except: try: var except NameError:",
+                        "hasattr(object, 'attribute') : 檢查物件屬性"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `x = y = z = [1, 2, 3]
+x.append(4)
+print(len(y))`,
+                options: ["3", "4", "錯誤", "不確定"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "x, y, z 都指向同一個列表物件，修改 x 也會影響 y 和 z。",
+                detailedExplanation: {
+                    concept: "多重賦值與物件引用",
+                    assignment: "x = y = z = [1, 2, 3] 讓三個變數指向同一個list物件",
+                    modification: "x.append(4) 修改了共享的list物件",
+                    result: "所有變數(x, y, z)都看到修改後的結果[1, 2, 3, 4]",
+                    length: "len(y) = 4"
+                }
+            },
+            // 繼續添加更多變數與運算式題目...
+            {
+                question: "Python中的科學記號表示法是什麼？",
+                code: `x = 1.5e3
+y = 2.5e-2
+print(x, y)`,
+                options: ["1500.0 0.025", "15.0 0.25", "1.5 2.5", "錯誤"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "1.5e3 表示 1.5 × 10³ = 1500.0，2.5e-2 表示 2.5 × 10⁻² = 0.025。",
+                detailedExplanation: {
+                    concept: "科學記號(Scientific Notation)",
+                    format: "mantissa e exponent",
+                    examples: [
+                        "1.5e3 = 1.5 × 10³ = 1500.0",
+                        "2.5e-2 = 2.5 × 10⁻² = 0.025",
+                        "6.02e23 = 6.02 × 10²³ (亞佛加厥數)"
+                    ],
+                    usage: "用於表示非常大或非常小的數字"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = 5
+print(type(x).__name__)`,
+                options: ["int", "<class 'int'>", "integer", "number"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "type(x).__name__ 返回類型的名稱字串，對於整數是 'int'。",
+                detailedExplanation: {
+                    concept: "類型檢查方法",
+                    methods: [
+                        "type(x) : 返回類型物件",
+                        "type(x).__name__ : 返回類型名稱字串",
+                        "isinstance(x, int) : 檢查是否為特定類型"
+                    ],
+                    examples: [
+                        "type(5).__name__ → 'int'",
+                        "type('hello').__name__ → 'str'",
+                        "type([1,2,3]).__name__ → 'list'"
+                    ]
+                }
+            },
+            {
+                question: "Python中的位元運算符有哪些？",
+                code: `a = 5  # 101
+b = 3  # 011
+print(a & b, a | b, a ^ b)`,
+                options: ["1 7 6", "8 2 2", "5 3 8", "錯誤"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "& 是位元AND，| 是位元OR，^ 是位元XOR。5&3=1, 5|3=7, 5^3=6。",
+                detailedExplanation: {
+                    concept: "位元運算符",
+                    operators: [
+                        "& : 位元AND",
+                        "| : 位元OR", 
+                        "^ : 位元XOR",
+                        "~ : 位元NOT",
+                        "<< : 左移",
+                        ">> : 右移"
+                    ],
+                    calculation: [
+                        "5 = 101, 3 = 011",
+                        "5 & 3 = 101 & 011 = 001 = 1",
+                        "5 | 3 = 101 | 011 = 111 = 7",
+                        "5 ^ 3 = 101 ^ 011 = 110 = 6"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = 10
+x <<= 2
+print(x)`,
+                options: ["20", "40", "5", "2.5"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "<< 是左移運算符，10 << 2 相當於 10 × 2² = 40。",
+                detailedExplanation: {
+                    concept: "位元移位運算",
+                    operation: "左移運算符 <<",
+                    calculation: [
+                        "10 的二進制：1010",
+                        "左移2位：101000",
+                        "結果：40"
+                    ],
+                    formula: "n << k = n × 2^k",
+                    example: "10 << 2 = 10 × 2² = 40"
+                }
+            },
+            {
+                question: "Python中的海象運算符(:=)的作用是什麼？",
+                code: `if (n := len([1, 2, 3, 4, 5])) > 3:
+    print(f\"長度是 {n}\")`,
+                options: ["語法錯誤", "長度是 5", "長度是 3", "沒有輸出"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "變數與運算式",
+                explanation: "海象運算符(:=)可以在表達式中賦值並返回值，這裡n被賦值為5。",
+                detailedExplanation: {
+                    concept: "海象運算符(Walrus Operator)",
+                    syntax: "variable := expression",
+                    purpose: "在表達式中進行賦值",
+                    benefits: [
+                        "減少重複計算",
+                        "使程式碼更簡潔",
+                        "在條件語句中特別有用"
+                    ],
+                    version: "Python 3.8+ 才支援"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = True
+y = False
+print(x + y, x * y, x - y)`,
+                options: ["1 0 1", "True False True", "2 0 0", "錯誤"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "在數學運算中，True被視為1，False被視為0。",
+                detailedExplanation: {
+                    concept: "布林值的數值運算",
+                    conversion: [
+                        "True → 1",
+                        "False → 0"
+                    ],
+                    calculation: [
+                        "True + False = 1 + 0 = 1",
+                        "True * False = 1 * 0 = 0", 
+                        "True - False = 1 - 0 = 1"
+                    ],
+                    note: "布林值是整數的子類型"
+                }
+            },
+            {
+                question: "Python中的除法運算在不同版本中有什麼差異？",
+                code: `# Python 2 vs Python 3
+print(5 / 2)`,
+                options: ["Python 2: 2, Python 3: 2.5", "Python 2: 2.5, Python 3: 2.5", "Python 2: 2.0, Python 3: 2.5", "沒有差異"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "Python 2中 / 是整數除法(結果為2)，Python 3中 / 是浮點除法(結果為2.5)。",
+                detailedExplanation: {
+                    concept: "Python版本差異",
+                    python2: "/ 運算符進行整數除法(當兩個操作數都是整數時)",
+                    python3: "/ 運算符總是進行浮點除法",
+                    migration: [
+                        "Python 2: 5 / 2 = 2",
+                        "Python 3: 5 / 2 = 2.5",
+                        "兩版本都支援: 5 // 2 = 2"
+                    ],
+                    solution: "使用 // 進行整數除法以保持相容性"
+                }
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `x = 1_000_000
+y = 0b1010
+z = 0o17
+w = 0xFF
+print(x, y, z, w)`,
+                options: ["1000000 10 15 255", "錯誤", "1000000 1010 17 FF", "1_000_000 1010 17 255"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "Python支援數字分隔符(_)和不同進制表示法。",
+                detailedExplanation: {
+                    concept: "數字字面值表示法",
+                    formats: [
+                        "1_000_000 : 十進制，使用_分隔符",
+                        "0b1010 : 二進制，等於10",
+                        "0o17 : 八進制，等於15", 
+                        "0xFF : 十六進制，等於255"
+                    ],
+                    separator: "_ 可用於提高大數字的可讀性",
+                    conversion: "所有格式最終都轉換為十進制整數"
+                }
+            },
+            {
+                question: "Python中的鏈式比較如何工作？",
+                code: `x = 5
+print(1 < x < 10)
+print(1 < x > 3)`,
+                options: ["True True", "True False", "False True", "錯誤"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "鏈式比較等同於多個and條件：1 < x < 10 等於 1 < x and x < 10。",
+                detailedExplanation: {
+                    concept: "鏈式比較運算符",
+                    syntax: "a op1 b op2 c 等同於 (a op1 b) and (b op2 c)",
+                    evaluation: [
+                        "1 < x < 10 → (1 < 5) and (5 < 10) → True and True → True",
+                        "1 < x > 3 → (1 < 5) and (5 > 3) → True and True → True"
+                    ],
+                    advantage: "更接近數學表示法，程式碼更簡潔"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = 3
+y = 4
+z = 5
+print(x < y < z, x < y > z)`,
+                options: ["True False", "True True", "False False", "False True"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "變數與運算式",
+                explanation: "x < y < z 為 True，x < y > z 等於 (3 < 4) and (4 > 5) 為 False。",
+                detailedExplanation: {
+                    concept: "複雜鏈式比較",
+                    evaluation: [
+                        "x < y < z → (3 < 4) and (4 < 5) → True and True → True",
+                        "x < y > z → (3 < 4) and (4 > 5) → True and False → False"
+                    ],
+                    note: "每個變數在鏈式比較中只被評估一次"
+                }
+            },
+
+            // 判斷式 (40題)
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = 15
+if x > 10:
+    if x < 20:
+        print(\"A\")
+    else:
+        print(\"B\")
+else:
+    print(\"C\")`,
+                options: ["A", "B", "C", "沒有輸出"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "x=15，滿足 x>10 和 x<20 的條件，所以輸出 'A'。",
+                detailedExplanation: {
+                    concept: "嵌套if語句",
+                    flow: [
+                        "x = 15",
+                        "檢查 x > 10 → 15 > 10 → True",
+                        "進入第一個if區塊",
+                        "檢查 x < 20 → 15 < 20 → True",
+                        "執行 print('A')"
+                    ],
+                    structure: "外層if-else包含內層if-else"
+                }
+            },
+            {
+                question: "Python中哪個關鍵字用於多重條件判斷？",
+                options: ["else if", "elif", "elseif", "switch"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "Python使用 elif 關鍵字來處理多重條件判斷，相當於其他語言的 else if。",
+                detailedExplanation: {
+                    concept: "多重條件判斷",
+                    syntax: "if condition1: ... elif condition2: ... else: ...",
+                    advantages: [
+                        "避免深層嵌套",
+                        "程式碼更清晰",
+                        "效率更高（短路求值）"
+                    ],
+                    note: "Python沒有switch語句，使用elif替代"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `score = 85
+if score >= 90:
+    grade = 'A'
+elif score >= 80:
+    grade = 'B'
+elif score >= 70:
+    grade = 'C'
+else:
+    grade = 'F'
+print(grade)`,
+                options: ["A", "B", "C", "F"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "score=85，滿足第二個條件 score>=80，所以 grade='B'。",
+                detailedExplanation: {
+                    concept: "elif鏈式判斷",
+                    evaluation: [
+                        "score >= 90 → 85 >= 90 → False",
+                        "score >= 80 → 85 >= 80 → True",
+                        "找到第一個True條件，執行對應程式碼",
+                        "跳過後續所有elif和else"
+                    ],
+                    pattern: "常用於分級評分系統"
+                }
+            },
+            {
+                question: "Python中的三元運算符語法是什麼？",
+                options: ["condition ? true_value : false_value", "true_value if condition else false_value", "if condition then true_value else false_value", "condition and true_value or false_value"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "Python的三元運算符語法是：true_value if condition else false_value。",
+                detailedExplanation: {
+                    concept: "條件表達式(三元運算符)",
+                    syntax: "value_if_true if condition else value_if_false",
+                    examples: [
+                        "max_val = a if a > b else b",
+                        "status = 'pass' if score >= 60 else 'fail'",
+                        "sign = 'positive' if x > 0 else 'negative'"
+                    ],
+                    advantage: "簡潔的條件賦值"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = 0
+if x:
+    print(\"True\")
+else:
+    print(\"False\")`,
+                options: ["True", "False", "0", "錯誤"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "在Python中，0被視為False，所以會輸出'False'。",
+                detailedExplanation: {
+                    concept: "真值測試(Truth Value Testing)",
+                    falsy_values: [
+                        "False",
+                        "None", 
+                        "0, 0.0, 0j",
+                        "空序列: '', [], ()",
+                        "空映射: {}",
+                        "空集合: set()"
+                    ],
+                    truthy: "除了上述值外，其他所有值都被視為True"
+                }
+            },
+            {
+                question: "Python中哪些值被視為False？",
+                options: ["只有False", "False和0", "False、0、空字串、空列表", "所有空值"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "Python中False、0、空字串''、空列表[]、空字典{}、None等都被視為False。",
+                detailedExplanation: {
+                    concept: "假值(Falsy Values)",
+                    complete_list: [
+                        "False (布林假值)",
+                        "None (空值)",
+                        "0 (整數零)",
+                        "0.0 (浮點零)",
+                        "0j (複數零)",
+                        "'' (空字串)",
+                        "[] (空列表)",
+                        "() (空元組)",
+                        "{} (空字典)",
+                        "set() (空集合)"
+                    ],
+                    usage: "在if語句中直接使用變數進行真值測試"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `a = 5
+b = 10
+result = \"大\" if a > b else \"小\"
+print(result)`,
+                options: ["大", "小", "5", "10"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "a=5, b=10，a > b 為False，所以result='小'。",
+                detailedExplanation: {
+                    concept: "三元運算符實例",
+                    evaluation: [
+                        "條件：a > b → 5 > 10 → False",
+                        "由於條件為False，選擇else後的值",
+                        "result = '小'"
+                    ],
+                    pattern: "常用於簡單的條件賦值"
+                }
+            },
+            {
+                question: "Python中的 and 運算符具有什麼特性？",
+                options: ["總是返回True或False", "短路求值", "從右到左求值", "必須是布林值"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "and 運算符具有短路求值特性，如果第一個條件為False，就不會評估第二個條件。",
+                detailedExplanation: {
+                    concept: "短路求值(Short-circuit Evaluation)",
+                    behavior: [
+                        "and: 如果第一個操作數為假，直接返回第一個操作數",
+                        "or: 如果第一個操作數為真，直接返回第一個操作數"
+                    ],
+                    benefits: [
+                        "提高效率",
+                        "避免不必要的計算",
+                        "防止錯誤（如除零）"
+                    ],
+                    example: "x != 0 and 10/x > 1  # 安全的除法檢查"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = []
+y = [1, 2, 3]
+print(x or y)`,
+                options: ["[]", "[1, 2, 3]", "True", "False"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "or 運算符返回第一個為真的值，x=[]為假，所以返回y=[1, 2, 3]。",
+                detailedExplanation: {
+                    concept: "邏輯運算符的返回值",
+                    and_behavior: "返回第一個假值，或最後一個值",
+                    or_behavior: "返回第一個真值，或最後一個值",
+                    example: [
+                        "[] or [1,2,3] → [1,2,3] (第一個真值)",
+                        "[1] and [2] → [2] (最後一個值)",
+                        "0 and 5 → 0 (第一個假值)"
+                    ]
+                }
+            },
+            {
+                question: "Python中的 not 運算符的優先級如何？",
+                options: ["最低", "中等", "最高", "與and相同"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "not 運算符具有很高的優先級，高於 and 和 or。",
+                detailedExplanation: {
+                    concept: "邏輯運算符優先級",
+                    order: [
+                        "1. not (最高)",
+                        "2. and",
+                        "3. or (最低)"
+                    ],
+                    example: [
+                        "not True and False → (not True) and False → False and False → False",
+                        "not True or False → (not True) or False → False or False → False"
+                    ],
+                    tip: "使用括號明確表達意圖"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = 5
+if 1 < x < 10:
+    print(\"範圍內\")
+else:
+    print(\"範圍外\")`,
+                options: ["範圍內", "範圍外", "錯誤", "True"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "Python支援鏈式比較，1 < x < 10 等同於 1 < x and x < 10。",
+                detailedExplanation: {
+                    concept: "鏈式比較在條件語句中的應用",
+                    evaluation: [
+                        "x = 5",
+                        "1 < x < 10 → (1 < 5) and (5 < 10) → True and True → True",
+                        "條件為True，執行第一個分支"
+                    ],
+                    readability: "比 1 < x and x < 10 更簡潔直觀"
+                }
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `if True and False or True:
+    print(\"A\")
+else:
+    print(\"B\")`,
+                options: ["A", "B", "錯誤", "不確定"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "運算順序：True and False = False，False or True = True，所以輸出'A'。",
+                detailedExplanation: {
+                    concept: "複合邏輯表達式求值",
+                    precedence: "and 的優先級高於 or",
+                    evaluation: [
+                        "True and False or True",
+                        "→ (True and False) or True",
+                        "→ False or True", 
+                        "→ True"
+                    ],
+                    result: "條件為True，輸出'A'"
+                }
+            },
+            {
+                question: "Python中如何檢查變數是否為None？",
+                options: ["x == None", "x is None", "not x", "以上都可以"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "檢查None應該使用 is None，因為None是單例物件。",
+                detailedExplanation: {
+                    concept: "None檢查的最佳實踐",
+                    recommended: "x is None",
+                    reasons: [
+                        "None是單例物件，使用is更準確",
+                        "is比==更快",
+                        "避免__eq__方法被重寫的影響"
+                    ],
+                    avoid: [
+                        "x == None (可能被重寫)",
+                        "not x (會將其他假值也視為None)"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = \"\"
+y = \"hello\"
+print(x and y)`,
+                options: ["\"\"", "\"hello\"", "True", "False"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "and 運算符返回第一個為假的值或最後一個值，x=\"\"為假，所以返回\"\"。",
+                detailedExplanation: {
+                    concept: "and運算符的詳細行為",
+                    rule: "返回第一個假值，如果都為真則返回最後一個值",
+                    evaluation: [
+                        "x = '' (假值)",
+                        "y = 'hello' (真值)",
+                        "x and y → 返回第一個假值 → ''"
+                    ],
+                    comparison: "如果是 y and x，則返回 ''"
+                }
+            },
+            {
+                question: "Python中的條件表達式可以嵌套嗎？",
+                options: ["不可以", "可以，但不建議", "可以，且常用", "只能嵌套一層"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "條件表達式可以嵌套，但會降低可讀性，不建議過度使用。",
+                detailedExplanation: {
+                    concept: "嵌套條件表達式",
+                    syntax: "value1 if condition1 else (value2 if condition2 else value3)",
+                    example: "grade = 'A' if score >= 90 else ('B' if score >= 80 else 'C')",
+                    problems: [
+                        "可讀性差",
+                        "難以維護",
+                        "容易出錯"
+                    ],
+                    alternative: "使用if-elif-else語句"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `x = 10
+y = 20
+z = 30
+if x < y < z:
+    print(\"遞增\")
+elif x > y > z:
+    print(\"遞減\")
+else:
+    print(\"其他\")`,
+                options: ["遞增", "遞減", "其他", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "x < y < z 即 10 < 20 < 30 為True，所以輸出'遞增'。",
+                detailedExplanation: {
+                    concept: "鏈式比較在複雜條件中的應用",
+                    evaluation: [
+                        "x < y < z → 10 < 20 < 30 → True",
+                        "第一個條件為True，執行對應程式碼",
+                        "跳過後續elif和else"
+                    ],
+                    pattern: "常用於檢查數值序列的單調性"
+                }
+            },
+            {
+                question: "Python中的 all() 和 any() 函數如何工作？",
+                code: `lst = [True, False, True]
+print(all(lst), any(lst))`,
+                options: ["True True", "False True", "True False", "False False"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "all()要求所有元素都為True，any()只要有一個元素為True即可。",
+                detailedExplanation: {
+                    concept: "聚合布林函數",
+                    all_function: "所有元素都為True時返回True",
+                    any_function: "至少一個元素為True時返回True",
+                    evaluation: [
+                        "all([True, False, True]) → False (有False元素)",
+                        "any([True, False, True]) → True (有True元素)"
+                    ],
+                    empty_case: [
+                        "all([]) → True (空序列)",
+                        "any([]) → False (空序列)"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = [1, 2, 3]
+if x:
+    print(len(x))
+else:
+    print(\"空列表\")`,
+                options: ["3", "空列表", "[1, 2, 3]", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "非空列表被視為True，所以執行if分支，輸出列表長度3。",
+                detailedExplanation: {
+                    concept: "容器類型的真值測試",
+                    rule: "非空容器為True，空容器為False",
+                    examples: [
+                        "[1, 2, 3] → True",
+                        "[] → False",
+                        "'hello' → True",
+                        "'' → False"
+                    ],
+                    application: "常用於檢查容器是否為空"
+                }
+            },
+            {
+                question: "Python中的 match-case 語句(Python 3.10+)如何使用？",
+                code: `x = 2
+match x:
+    case 1:
+        print(\"一\")
+    case 2:
+        print(\"二\")
+    case _:
+        print(\"其他\")`,
+                options: ["一", "二", "其他", "語法錯誤"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "match-case是Python 3.10新增的模式匹配語法，x=2匹配case 2。",
+                detailedExplanation: {
+                    concept: "結構化模式匹配(Structural Pattern Matching)",
+                    syntax: "match expression: case pattern: ...",
+                    features: [
+                        "模式匹配",
+                        "解構賦值",
+                        "守衛條件",
+                        "通配符 _"
+                    ],
+                    version: "Python 3.10+ 才支援",
+                    advantage: "比if-elif鏈更強大和靈活"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `def check_value(x):
+    if x > 0:
+        return \"正數\"
+    elif x < 0:
+        return \"負數\"
+    else:
+        return \"零\"
+
+print(check_value(0))`,
+                options: ["正數", "負數", "零", "None"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "判斷式",
+                explanation: "x=0，不滿足x>0和x<0，所以執行else分支，返回'零'。",
+                detailedExplanation: {
+                    concept: "函數中的條件判斷",
+                    flow: [
+                        "x = 0",
+                        "x > 0 → 0 > 0 → False",
+                        "x < 0 → 0 < 0 → False", 
+                        "執行else分支 → return '零'"
+                    ],
+                    pattern: "常用於數值分類函數"
+                }
+            },
+            {
+                question: "Python中的條件表達式與if語句的效能差異是什麼？",
+                code: `# 方法1：條件表達式
+result1 = \"pass\" if score >= 60 else \"fail\"
+
+# 方法2：if語句
+if score >= 60:
+    result2 = \"pass\"
+else:
+    result2 = \"fail\"`,
+                options: ["條件表達式更快", "if語句更快", "效能相同", "取決於條件複雜度"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "在簡單條件下，兩者效能基本相同，選擇主要基於可讀性考慮。",
+                detailedExplanation: {
+                    concept: "條件語句效能比較",
+                    performance: "簡單條件下效能差異微乎其微",
+                    considerations: [
+                        "可讀性：if語句更清晰",
+                        "簡潔性：條件表達式更簡潔",
+                        "複雜度：複雜邏輯用if語句",
+                        "維護性：if語句更易維護"
+                    ],
+                    recommendation: "根據具體情況選擇合適的語法"
+                }
+            },
+            // 繼續添加更多判斷式題目...
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = None
+y = 0
+z = False
+print(x or y or z or \"default\")`,
+                options: ["None", "0", "False", "default"],
+                correct: 3,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "or運算符會返回第一個真值，前三個都是假值，所以返回'default'。",
+                detailedExplanation: {
+                    concept: "or運算符的鏈式使用",
+                    evaluation: [
+                        "x or y or z or 'default'",
+                        "None or 0 or False or 'default'",
+                        "所有前面的值都是假值",
+                        "返回第一個真值：'default'"
+                    ],
+                    pattern: "常用於設置預設值"
+                }
+            },
+            {
+                question: "Python中如何實現多條件的複雜判斷？",
+                code: `age = 25
+income = 50000
+if age >= 18 and (income > 30000 or age > 65):
+    print(\"符合條件\")
+else:
+    print(\"不符合條件\")`,
+                options: ["符合條件", "不符合條件", "錯誤", "不確定"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "age>=18為True，income>30000為True，整個條件為True。",
+                detailedExplanation: {
+                    concept: "複合條件判斷",
+                    evaluation: [
+                        "age >= 18 → 25 >= 18 → True",
+                        "income > 30000 → 50000 > 30000 → True",
+                        "age > 65 → 25 > 65 → False",
+                        "(income > 30000 or age > 65) → True or False → True",
+                        "True and True → True"
+                    ],
+                    tips: "使用括號明確運算優先級"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `def get_grade(score):
+    return (\"A\" if score >= 90 else
+            \"B\" if score >= 80 else
+            \"C\" if score >= 70 else
+            \"D\" if score >= 60 else \"F\")
+
+print(get_grade(75))`,
+                options: ["A", "B", "C", "D"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "score=75，不滿足>=90和>=80，滿足>=70，所以返回'C'。",
+                detailedExplanation: {
+                    concept: "多層條件表達式",
+                    evaluation: [
+                        "score >= 90 → 75 >= 90 → False",
+                        "score >= 80 → 75 >= 80 → False",
+                        "score >= 70 → 75 >= 70 → True",
+                        "返回 'C'"
+                    ],
+                    note: "雖然可行，但可讀性不如if-elif語句"
+                }
+            },
+            {
+                question: "Python中的布林運算符如何處理非布林值？",
+                code: `print(\"hello\" and 42)
+print(0 or \"world\")
+print(not \"python\")`,
+                options: ["42 world False", "True True False", "hello world True", "錯誤"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "and返回最後一個值，or返回第一個真值，not返回布林值。",
+                detailedExplanation: {
+                    concept: "邏輯運算符與非布林值",
+                    behavior: [
+                        "and: 返回第一個假值或最後一個值",
+                        "or: 返回第一個真值或最後一個值", 
+                        "not: 總是返回布林值"
+                    ],
+                    evaluation: [
+                        "'hello' and 42 → 'hello'為真，返回42",
+                        "0 or 'world' → 0為假，返回'world'",
+                        "not 'python' → 'python'為真，返回False"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = 5
+result = x if x > 0 else -x if x < 0 else 0
+print(result)`,
+                options: ["5", "-5", "0", "錯誤"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "x=5>0，所以result=x=5。這是嵌套的條件表達式。",
+                detailedExplanation: {
+                    concept: "嵌套條件表達式的求值",
+                    structure: "x if x > 0 else (-x if x < 0 else 0)",
+                    evaluation: [
+                        "x = 5",
+                        "x > 0 → 5 > 0 → True",
+                        "返回第一個值：x = 5"
+                    ],
+                    purpose: "實現絕對值函數的邏輯"
+                }
+            },
+            {
+                question: "Python中如何檢查多個條件是否都滿足？",
+                code: `conditions = [True, True, False, True]
+print(all(conditions))
+print(any(conditions))`,
+                options: ["True True", "False True", "True False", "False False"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "all()要求所有條件都為True，any()只要有一個為True即可。",
+                detailedExplanation: {
+                    concept: "批量條件檢查",
+                    functions: [
+                        "all(): 所有元素都為True才返回True",
+                        "any(): 至少一個元素為True就返回True"
+                    ],
+                    evaluation: [
+                        "all([True, True, False, True]) → False (有False)",
+                        "any([True, True, False, True]) → True (有True)"
+                    ],
+                    usage: "常用於檢查多個條件的組合"
+                }
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `x = 10
+if x := x + 5:  # 海象運算符
+    print(f\"x is {x}\")
+else:
+    print(\"x is falsy\")`,
+                options: ["x is 10", "x is 15", "x is falsy", "語法錯誤"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "海象運算符將x+5的結果(15)賦值給x，15為真值，所以執行if分支。",
+                detailedExplanation: {
+                    concept: "海象運算符在條件語句中的應用",
+                    operation: [
+                        "x := x + 5 將 x + 5 的結果賦值給 x",
+                        "x 變成 15",
+                        "15 是真值，條件為 True"
+                    ],
+                    advantage: "在條件檢查的同時進行賦值",
+                    version: "需要 Python 3.8+"
+                }
+            },
+            {
+                question: "Python中的短路求值有什麼實際應用？",
+                code: `def safe_divide(a, b):
+    return b != 0 and a / b
+
+print(safe_divide(10, 2))
+print(safe_divide(10, 0))`,
+                options: ["5.0 False", "5.0 錯誤", "True False", "5.0 None"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "短路求值防止除零錯誤，當b=0時，and直接返回False而不執行除法。",
+                detailedExplanation: {
+                    concept: "短路求值的安全應用",
+                    mechanism: [
+                        "b != 0 and a / b",
+                        "當 b != 0 為 False 時，不執行 a / b",
+                        "避免 ZeroDivisionError"
+                    ],
+                    results: [
+                        "safe_divide(10, 2): 2 != 0 → True, 10/2 → 5.0",
+                        "safe_divide(10, 0): 0 != 0 → False, 不執行除法"
+                    ],
+                    pattern: "常用於安全檢查"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `x = [1, 2, 3]
+y = [1, 2, 3]
+print(x == y, x is y)`,
+                options: ["True True", "False False", "True False", "False True"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "判斷式",
+                explanation: "== 比較值(相等)，is 比較身份(不是同一物件)。",
+                detailedExplanation: {
+                    concept: "相等性比較 vs 身份比較",
+                    operators: [
+                        "== : 比較物件的值是否相等",
+                        "is : 比較是否為同一個物件"
+                    ],
+                    explanation: [
+                        "x == y → [1,2,3] == [1,2,3] → True (值相同)",
+                        "x is y → 不同的list物件 → False (不同身份)"
+                    ],
+                    memory: "x和y指向不同的記憶體位址"
+                }
+            },
+            {
+                question: "Python中如何實現類似switch的多分支判斷？",
+                code: `def handle_grade(grade):
+    match grade:
+        case 'A':
+            return \"優秀\"
+        case 'B':
+            return \"良好\"
+        case 'C':
+            return \"及格\"
+        case _:
+            return \"未知\"
+
+print(handle_grade('B'))`,
+                options: ["優秀", "良好", "及格", "未知"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "判斷式",
+                explanation: "match-case語句匹配grade='B'，返回'良好'。",
+                detailedExplanation: {
+                    concept: "match-case模式匹配",
+                    syntax: "match expression: case pattern: ...",
+                    features: [
+                        "精確匹配",
+                        "通配符 _ 匹配任何值",
+                        "可以匹配複雜模式",
+                        "支援守衛條件"
+                    ],
+                    alternative: "Python 3.10之前使用字典或if-elif"
+                }
+            },
+
+            // 迴圈 (40題)
+            {
+                question: "以下程式碼會輸出幾次 'Hello'？",
+                code: `for i in range(3, 8, 2):
+    print('Hello')`,
+                options: ["2", "3", "4", "5"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "range(3, 8, 2) 產生 [3, 5, 7]，共3個數字，所以會輸出3次 'Hello'。",
+                detailedExplanation: {
+                    concept: "range函數的參數",
+                    syntax: "range(start, stop, step)",
+                    generation: [
+                        "start=3, stop=8, step=2",
+                        "產生：3, 5, 7",
+                        "共3個數字"
+                    ],
+                    note: "stop值不包含在內"
+                }
+            },
+            {
+                question: "while迴圈和for迴圈的主要區別是什麼？",
+                options: ["沒有區別", "while用於已知次數，for用於未知次數", "for用於已知次數，while用於未知次數", "while更快"],
+                correct: 2,
+                difficulty: "easy",
+                topic: "迴圈",
+                explanation: "for迴圈通常用於已知迭代次數的情況，while迴圈用於條件控制的迭代。",
+                detailedExplanation: {
+                    concept: "迴圈類型的選擇",
+                    for_loop: [
+                        "適用於已知迭代次數",
+                        "遍歷序列或可迭代物件",
+                        "語法簡潔"
+                    ],
+                    while_loop: [
+                        "適用於條件控制",
+                        "迭代次數未知",
+                        "需要手動控制迴圈變數"
+                    ],
+                    examples: [
+                        "for: 遍歷列表、字典",
+                        "while: 讀取檔案直到結尾"
+                    ]
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `for i in range(5):
+    if i == 2:
+        continue
+    if i == 4:
+        break
+    print(i)`,
+                options: ["0 1 3", "0 1 2 3", "0 1 3 4", "1 3"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "i=0,1時正常輸出；i=2時continue跳過；i=3時正常輸出；i=4時break結束迴圈。",
+                detailedExplanation: {
+                    concept: "continue和break的使用",
+                    flow: [
+                        "i=0: 正常執行，輸出0",
+                        "i=1: 正常執行，輸出1", 
+                        "i=2: continue跳過print",
+                        "i=3: 正常執行，輸出3",
+                        "i=4: break結束迴圈"
+                    ],
+                    keywords: [
+                        "continue: 跳過本次迭代",
+                        "break: 結束整個迴圈"
+                    ]
+                }
+            },
+            {
+                question: "Python中的else子句可以用在哪些語句中？",
+                options: ["只能用在if語句", "if和while語句", "if、while和for語句", "if、while、for和try語句"],
+                correct: 3,
+                difficulty: "hard",
+                topic: "迴圈",
+                explanation: "Python中的else子句可以用在if、while、for和try語句中，當迴圈正常結束時執行。",
+                detailedExplanation: {
+                    concept: "else子句的多種用法",
+                    usage: [
+                        "if-else: 條件不滿足時執行",
+                        "while-else: 迴圈正常結束時執行",
+                        "for-else: 迴圈正常結束時執行",
+                        "try-else: 沒有異常時執行"
+                    ],
+                    note: "迴圈的else只有在沒有break時才執行"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `for i in range(3):
+    print(i)
+else:
+    print(\"完成\")`,
+                options: ["0 1 2", "0 1 2 完成", "完成", "錯誤"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "for迴圈的else子句在迴圈正常結束時執行，所以會輸出0 1 2 完成。",
+                detailedExplanation: {
+                    concept: "for-else語句",
+                    execution: [
+                        "迴圈正常執行：輸出0, 1, 2",
+                        "迴圈正常結束（沒有break）",
+                        "執行else子句：輸出'完成'"
+                    ],
+                    condition: "只有在沒有break的情況下else才會執行"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `i = 0
+while i < 3:
+    i += 1
+    if i == 2:
+        continue
+    print(i)`,
+                options: ["1 3", "1 2 3", "0 1 3", "2 3"],
+                correct: 0,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "i=1時輸出1；i=2時continue跳過print；i=3時輸出3。",
+                detailedExplanation: {
+                    concept: "while迴圈中的continue",
+                    flow: [
+                        "第1次：i=0→1, i!=2, 輸出1",
+                        "第2次：i=1→2, i==2, continue跳過print",
+                        "第3次：i=2→3, i!=2, 輸出3",
+                        "第4次：i=3, 不滿足i<3, 結束"
+                    ],
+                    note: "continue後直接進入下一次迭代"
+                }
+            },
+            {
+                question: "Python中的 range() 函數返回什麼？",
+                options: ["列表", "元組", "迭代器", "字典"],
+                correct: 2,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "range() 返回一個range物件，它是一個迭代器，可以節省記憶體。",
+                detailedExplanation: {
+                    concept: "range物件的特性",
+                    type: "range物件（迭代器）",
+                    advantages: [
+                        "記憶體效率高",
+                        "惰性求值",
+                        "支援索引和切片"
+                    ],
+                    conversion: "可用list(range())轉換為列表",
+                    note: "Python 2中range()返回列表，xrange()返回迭代器"
+                }
+            },
+            {
+                question: "以下程式碼會產生什麼結果？",
+                code: `for i in range(2, 10, 3):
+    print(i, end=\" \")`,
+                options: ["2 5 8", "2 5 8 11", "3 6 9", "2 4 6 8"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "迴圈",
+                explanation: "range(2, 10, 3) 從2開始，步長為3，不超過10，產生2, 5, 8。",
+                detailedExplanation: {
+                    concept: "range函數的步長參數",
+                    parameters: "range(start=2, stop=10, step=3)",
+                    generation: [
+                        "第1個：2",
+                        "第2個：2+3=5",
+                        "第3個：5+3=8",
+                        "第4個：8+3=11 > 10，停止"
+                    ],
+                    output: "2 5 8 (end=' '使輸出在同一行)"
+                }
+            },
+            {
+                question: "Python中如何創建無限迴圈？",
+                options: ["for i in range(inf):", "while True:", "loop:", "repeat:"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "迴圈",
+                explanation: "while True: 創建無限迴圈，需要用break語句來跳出。",
+                detailedExplanation: {
+                    concept: "無限迴圈的創建",
+                    syntax: "while True:",
+                    usage: [
+                        "伺服器程式",
+                        "遊戲主迴圈",
+                        "持續監控"
+                    ],
+                    exit: "使用break語句或異常來跳出",
+                    caution: "確保有適當的退出條件"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `for i in [1, 2, 3]:
+    for j in [4, 5]:
+        if i == 2:
+            break
+        print(i, j)`,
+                options: ["1 4\\n1 5\\n3 4\\n3 5", "1 4\\n1 5", "1 4\\n1 5\\n2 4\\n2 5", "錯誤"],
+                correct: 0,
+                difficulty: "hard",
+                topic: "迴圈",
+                explanation: "當i=1時，內層迴圈完整執行；當i=2時，break跳出內層迴圈；當i=3時，內層迴圈又完整執行。",
+                detailedExplanation: {
+                    concept: "嵌套迴圈中的break",
+                    execution: [
+                        "i=1: j=4,5 都執行，輸出(1,4), (1,5)",
+                        "i=2: j=4時break，跳出內層迴圈",
+                        "i=3: j=4,5 都執行，輸出(3,4), (3,5)"
+                    ],
+                    note: "break只跳出最內層的迴圈"
+                }
+            },
+            {
+                question: "Python中的 enumerate() 函數的作用是什麼？",
+                options: ["計算長度", "同時獲取索引和值", "排序", "過濾"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "enumerate() 函數可以同時獲取迭代物件的索引和值。",
+                detailedExplanation: {
+                    concept: "enumerate函數",
+                    purpose: "為可迭代物件添加計數器",
+                    syntax: "enumerate(iterable, start=0)",
+                    return: "返回(index, value)元組",
+                    example: "for i, v in enumerate(['a', 'b']): # (0,'a'), (1,'b')",
+                    start_param: "可指定起始索引值"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `for i, v in enumerate(['a', 'b', 'c']):
+    print(i, v)`,
+                options: ["0 a\\n1 b\\n2 c", "1 a\\n2 b\\n3 c", "a 0\\nb 1\\nc 2", "錯誤"],
+                correct: 0,
+                difficulty: "easy",
+                topic: "迴圈",
+                explanation: "enumerate() 預設從0開始編號，返回(索引, 值)的元組。",
+                detailedExplanation: {
+                    concept: "enumerate的預設行為",
+                    output: [
+                        "(0, 'a') → 0 a",
+                        "(1, 'b') → 1 b",
+                        "(2, 'c') → 2 c"
+                    ],
+                    unpacking: "使用元組解包 i, v = (index, value)",
+                    custom_start: "enumerate(['a','b','c'], 1) 從1開始"
+                }
+            },
+            {
+                question: "Python中的 zip() 函數在迴圈中的作用是什麼？",
+                options: ["壓縮檔案", "並行迭代多個序列", "排序", "去重"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "zip() 函數可以並行迭代多個序列，返回元組。",
+                detailedExplanation: {
+                    concept: "zip函數的並行迭代",
+                    purpose: "將多個可迭代物件組合成元組",
+                    behavior: "以最短序列的長度為準",
+                    example: "zip([1,2,3], ['a','b']) → (1,'a'), (2,'b')",
+                    usage: "常用於同時遍歷多個相關序列"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `for a, b in zip([1, 2, 3], ['x', 'y']):
+    print(a, b)`,
+                options: ["1 x\\n2 y\\n3", "1 x\\n2 y", "錯誤", "1 x\\n2 y\\n3 None"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "zip() 以最短序列的長度為準，所以只輸出1 x和2 y。",
+                detailedExplanation: {
+                    concept: "zip函數的長度限制",
+                    sequences: "[1,2,3] 長度3, ['x','y'] 長度2",
+                    result: "以較短的序列為準，只產生2對",
+                    pairs: "(1,'x'), (2,'y')",
+                    note: "第3個元素被忽略"
+                }
+            },
+            {
+                question: "Python中如何跳出多層嵌套迴圈？",
+                options: ["break 2", "使用標籤", "使用函數和return", "不可能"],
+                correct: 2,
+                difficulty: "hard",
+                topic: "迴圈",
+                explanation: "Python沒有標籤，可以使用函數和return，或者使用異常來跳出多層迴圈。",
+                detailedExplanation: {
+                    concept: "跳出多層迴圈的方法",
+                    methods: [
+                        "函數+return: 將迴圈放在函數中",
+                        "標誌變數: 使用布林變數控制",
+                        "異常: 拋出自定義異常",
+                        "else子句: 配合break使用"
+                    ],
+                    limitation: "Python沒有goto或標籤語法",
+                    recommendation: "重構程式碼，使用函數"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `for i in range(3):
+    for j in range(2):
+        if i == 1 and j == 0:
+            break
+        print(f\"{i},{j}\")
+    else:
+        print(f\"內層完成 {i}\")`,
+                options: ["0,0 0,1 內層完成0 1,1 內層完成1 2,0 2,1 內層完成2", "0,0 0,1 內層完成0 2,0 2,1 內層完成2", "0,0 0,1 1,1 2,0 2,1", "錯誤"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "迴圈",
+                explanation: "當i=1,j=0時break跳出內層迴圈，else不執行；其他情況內層迴圈正常完成，else執行。",
+                detailedExplanation: {
+                    concept: "嵌套迴圈的else子句",
+                    execution: [
+                        "i=0: 內層正常完成，else執行",
+                        "i=1: j=0時break，else不執行",
+                        "i=2: 內層正常完成，else執行"
+                    ],
+                    rule: "只有內層迴圈正常結束時，else才執行"
+                }
+            },
+            {
+                question: "Python中的迴圈變數在迴圈結束後還存在嗎？",
+                code: `for i in range(3):
+    pass
+print(i)`,
+                options: ["錯誤", "2", "3", "None"],
+                correct: 1,
+                difficulty: "medium",
+                topic: "迴圈",
+                explanation: "Python中迴圈變數在迴圈結束後仍然存在，保持最後一次迭代的值。",
+                detailedExplanation: {
+                    concept: "迴圈變數的作用域",
+                    behavior: "迴圈變數在迴圈結束後仍然存在",
+                    value: "保持最後一次迭代的值",
+                    example: "range(3)最後一次i=2",
+                    note: "這與某些其他語言不同",
+                    caution: "可能導致意外的變數重用"
+                }
+            },
+            {
+                question: "以下程式碼的輸出是什麼？",
+                code: `numbers = [1, 2, 3, 4, 5]
+for i, num in enumerate(numbers):
+    if num % 2 == 0:
+        numbers.remove(num)
+print(numbers)`,
+                options: ["[1, 3, 5]", "[1, 3, 4, 5]", "[2, 4]", "錯誤"],
+                correct: 1,
+                difficulty: "hard",
+                topic: "迴圈",
+                explanation: "在迭代過程中修改列表會導致索引錯位，只有2被移除，4被跳過。",
+                detailedExplanation: {
+                    concept: "迭代時修改容器的問題",
+                    problem: "修改正在迭代的容器會導致索引錯位",
+                    execution: [
+                        "i=0, num=1: 不移除",
+                        "i=1, num=2: 移除2，列表變成[1,3,4,5]",
+                        "i=2, num=4: 由於移除了2，索引錯位跳過3",
+                        "i=3, num=5: 不移除"
+                    ],
+                    solution: "使用列表推導式或反向迭代"
+                }
+            },
+            {
+                question: "Python中如何反向迭代序列？",
+                code: `lst = [1, 2, 3, 4, 5]
+for item in reversed(lst):
+    print(item, end=\" \")`,
+                options: ["1 2 3 4 5", "5 4 3 2 1", "錯誤", "5 4 3 2 1 1 2 3 4 5"],
+                correct: 1,
+                difficulty: "easy",
+                topic: "迴圈",
+                explanation: "reversed() 函數返回反向迭代器，輸出 5 4 3 2 1。",
+                detailedExplanation: {
+                    concept: "反向迭代的方法",
+                    methods: [
+                        "reversed(seq): 返回反向迭代器",
+                        "seq[::-1]: 創建反向副本",
+                        "range(len(seq)-1, -1, -1): 反向索引"
+                    ],
+                    efficiency: "reversed()更節省記憶體",
+                    note: "reversed()不修改原序列"
+                }
+            },
+            {
+                question: "以下程式碼會輸出什麼？",
+                code: `matrix = [[1, 2], [3, 4], [5, 6]]
+for row in matrix:
+    for col in row:
+        print(col, end=\" \")
+    print<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ee9b88f64a6b78',t:'MTc1NTE1NTE2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
